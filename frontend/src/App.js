@@ -1,9 +1,11 @@
-import { Route, Routes} from "react-router";
+import { Route, Routes } from "react-router";
 import Content from "./components/Content";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     <>
+      <Navbar />
       <div className="firstFlex">
         <div className="columna">
           <div className="content">
