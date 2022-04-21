@@ -1,5 +1,7 @@
 const express = require("express");
+const routes = require("./routes");
 const dotenv = require("dotenv");
+const db = require("./db");
 
 const app = express();
 dotenv.config();
@@ -16,6 +18,10 @@ app.use(function (err, req, res, next) {
   res.status(500).send(err);
 });
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.use("/api", routes);
+
+db.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+});
