@@ -1,4 +1,5 @@
 import Card from "../commons/Card";
+import "./Card.css"
 
 const Grid = ({ media }) => {
   return (

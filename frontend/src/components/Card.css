@@ -1,0 +1,8 @@
+.flexRowJustified {
+    display: flex;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    overflow: scroll;
+  }
