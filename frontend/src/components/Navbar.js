@@ -12,10 +12,10 @@ const Navbar = () => {
           <span className="topTitle">The Mooovie Database</span>
         </Link>
         <div className="mediaNavButtonsDiv">
-          <Link to="/movie">
+          <Link to="/media/movie">
             <button className="mediaNavButton">Movies</button>
           </Link>
-          <Link to="/tv">
+          <Link to="/media/tv">
             <button className="mediaNavButton">TV Shows</button>
           </Link>
           <Link to="/user/search">

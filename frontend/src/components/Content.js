@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Grid from "./Grid";
+import Row from "./Row";
 import { Routes, Route } from "react-router";
 
 const Content = () => {
@@ -18,7 +18,7 @@ const Content = () => {
 
   return (
     <Routes>
-      <Route path="" element={<Grid media={popularMovies} />} />
+      <Route path="" element={<Row media={popularMovies} />} />
     </Routes>
   );
 };

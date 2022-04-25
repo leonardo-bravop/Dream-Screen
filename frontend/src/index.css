@@ -87,3 +87,15 @@ body {
   animation-name: expand;
   animation-duration: 0.5s;
 }
+
+@keyframes expand {
+  0% {
+    font-size: 1.2em;
+  }
+  50% {
+    font-size: 1.3em;
+  }
+  100% {
+    font-size: 1.2em;
+  }
+}
