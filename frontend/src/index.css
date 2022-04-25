@@ -7,95 +7,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.navbar {
-  z-index: 10;
-  position: fixed;
+.flexColumnAligned {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  background-color: #1e1eac;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: center;
-  height: 100px;
 }
 
-.logoDiv {
-  padding-left: 40px;
-  display: flex;
-  align-items: center;
-}
-
-.logoDiv > a {
-  text-decoration: none;
-}
-
-.topTitle {
-  margin: 20px;
-  text-decoration: overline;
-  font-size: 2em;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-.topTitle:hover {
-  color: #fcc44c;
-}
-
-.topTitle:active {
-  color: #00b7ff;
-}
-
-.mediaNavButton {
-  font-weight: bold;
-  font-family: sans-serif;
-  font-size: 1.2em;
-  height: 40px;
-  padding: 10px 10px;
-  margin: 10px;
-  color: white;
-  background-color: transparent;
-  border-style: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.mediaNavButton:hover {
-  color: #fcc44c;
-}
-
-.userButtons {
-  padding-right: 40px;
-  display: flex;
-  align-items: center;
-}
-
-
-.navButton {
-  font-weight: bold;
-  font-family: sans-serif;
-  font-size: 1.2em;
-  height: 40px;
-  padding: 10px 10px;
-  margin: 10px;
-  background-color: #fcc44c;
-  border-style: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.navButton:hover {
-  animation-name: expand;
-  animation-duration: 0.5s;
-}
-
-@keyframes expand {
-  0% {
-    font-size: 1.2em;
-  }
-  50% {
-    font-size: 1.3em;
-  }
-  100% {
-    font-size: 1.2em;
-  }
+.flexColumnAligned > label, button {
+  margin-top: 15px;
+  margin-bottom: 10px;
 }

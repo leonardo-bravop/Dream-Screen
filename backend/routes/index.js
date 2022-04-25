@@ -1,5 +1,5 @@
 const express = require("express");
-const { Passport } = require("passport/lib");
+const passport = require("passport");
 const User = require("../models/User");
 
 const router = express();
@@ -22,16 +22,16 @@ router.post("/register", (req, res) => {
   });
 });
 
-router.post("/api/login", Passport.authenticate("local"), (req, res) => {
+router.post("/login", passport.authenticate("local"), (req, res) => {
   res.send(req.user);
 });
 
-router.post("/api/logout", (req, res) => {
+router.post("/logout", (req, res) => {
   req.logOut();
   res.sendStatus(200);
 });
 
-router.get("/api/me", (req, res) => {
+router.get("/me", (req, res) => {
   if (!req.user) return res.sendStatus(401);
   res.send(req.user);
 });

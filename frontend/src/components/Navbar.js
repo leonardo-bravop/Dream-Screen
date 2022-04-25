@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { sendLogoutRequest } from "../state/user";
+import "./Navbar.css";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(sendLogoutRequest())
+      .then((res) => res)
+      .then(() => navigate("/"));
+  };
 
   return (
     <nav className="navbar">
@@ -24,7 +37,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="userButtons">
-        {/* {user.id ? (
+        {user.id ? (
           <>
             <Link to={`/user/profile/${user.id}`}>
               <div
@@ -50,9 +63,9 @@ const Navbar = () => {
               Logout
             </button>
           </>
-        ) : ( */}
+        ) : (
           <>
-            <Link to={"/user/login"}>
+            <Link to={"/login"}>
               <button
                 className="navButton"
                 style={{ backgroundColor: "inherit", color: "white" }}
@@ -60,11 +73,11 @@ const Navbar = () => {
                 Login
               </button>
             </Link>
-            <Link to={"/user/register"}>
+            <Link to={"/register"}>
               <button className="navButton">SignUp</button>
             </Link>
           </>
-        {/* )} */}
+        )}
       </div>
     </nav>
   );
