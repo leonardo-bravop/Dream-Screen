@@ -49,6 +49,9 @@ const SearchForm = () =>{
               <button type="submit" className="searchSubmitButton">
                 SEARCH
               </button>
+              <button type="submit" className="searchLens">
+                <img src="/lens.svg" style={{height: "30px", width: "30px"}}/>
+              </button>
             </form>
     )
 }

@@ -1,7 +1,7 @@
 import Card from "../commons/Card";
 import "./Row.css"
 
-const Grid = ({ media }) => {
+const Row = ({ media }) => {
   return (
     <div className="flexRowJustified">
       {media.map((element) => (
@@ -13,4 +13,4 @@ const Grid = ({ media }) => {
   );
 };
 
-export default Grid;
+export default Row;

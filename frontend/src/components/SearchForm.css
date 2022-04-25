@@ -38,6 +38,36 @@
   width: 120px;
 }
 
+.searchLens {
+  margin: 0px;
+  font-size: 0.9em;
+  height: 46px;
+  padding: 0 20px;
+  background-color: #1e1eac;
+  color: white;
+  font-weight: bold;
+  border-radius: 22.5px;
+  border: none;
+  cursor: pointer;
+}
+
 .searchSubmitButton:hover {
   background-color: #1e1eac;
+}
+
+@media (max-width: 990px) {
+  .searchSubmitButton {
+    display: none;
+  }
+  .searchForm {
+  width: 70%;
+  }
+
+}
+
+@media (min-width: 990px) {
+  .searchLens {
+    display: none;
+  }
+
 }

@@ -26,6 +26,19 @@
   border-radius: 4px 4px 0 0;
 }
 
+@media (max-width: 990px) {
+  .card, .card-img {
+  width: 120px;
+  }
+  .card {
+    height: 250px;
+  }
+  .card-img {
+    height: 180px;
+  }
+}
+
+
 .card-content {
   display: flex;
   flex: 1;

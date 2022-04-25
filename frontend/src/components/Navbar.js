@@ -1,19 +1,10 @@
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { sendLogoutRequest } from "../state/user";
 import "./Navbar.css";
+import { useState } from "react";
+import NavbarLinks from "./NavbarLinks";
 
 const Navbar = () => {
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    dispatch(sendLogoutRequest())
-      .then((res) => res)
-      .then(() => navigate("/"));
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="navbar">
@@ -22,62 +13,40 @@ const Navbar = () => {
           <img src={"/tmdbLogo2.png"} style={{ height: "50px" }} />{" "}
         </Link>
         <Link to="/">
-          <span className="topTitle">The Mooovie Database</span>
+          <span className="topTitle">Dream Screen</span>
         </Link>
-        <div className="mediaNavButtonsDiv">
-          <Link to="/media/movie">
-            <button className="mediaNavButton">Movies</button>
-          </Link>
-          <Link to="/media/tv">
-            <button className="mediaNavButton">TV Shows</button>
-          </Link>
-          <Link to="/user/search">
-            <button className="mediaNavButton">Users</button>
-          </Link>
-        </div>
-      </div>
-      <div className="userButtons">
-        {user.id ? (
-          <>
-            <Link to={`/user/profile/${user.id}`}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginRight: "20px",
-                }}
-              >
-                <img
-                  src="/login.png"
-                  style={{ height: "48px", margin: "0 20px" }}
-                />
-                <div
-                  style={{ color: "white", fontSize: "1.3em", height: "100%" }}
-                >
-                  {user.nickName}
-                </div>
-              </div>
-            </Link>
 
-            <button className="navButton" onClick={handleLogout}>
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to={"/login"}>
-              <button
-                className="navButton"
-                style={{ backgroundColor: "inherit", color: "white" }}
-              >
-                Login
-              </button>
-            </Link>
-            <Link to={"/register"}>
-              <button className="navButton">SignUp</button>
-            </Link>
-          </>
-        )}
+        <div className="normal-navigation">
+          <NavbarLinks />
+        </div>
+        <div
+          style={{ display: "flex", flexDirection: "column", height: "100%" }}
+        >
+          <div style={{ alignSelf: "flex-end" }}>
+            {!isOpen ? (
+              <img
+                src="/menu.svg"
+                className="hamburger-menu"
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                }}
+              />
+            ) : (
+              <img
+                src="/close.svg"
+                className="close-menu"
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                }}
+              />
+            )}
+          </div>
+          {isOpen && (
+            <div className="mobile-navigation">
+              <NavbarLinks />
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );
