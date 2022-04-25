@@ -2,9 +2,8 @@ import { useMatch, useNavigate } from "react-router";
 import useInput from "../hooks/useInput"
 import "./SearchForm.css"
 
-const SearchForm = () =>{
+const SearchForm = ({search}) =>{
 
-    const search = useInput();
     const matchUser = useMatch("/user/:id/*");
     const navigate = useNavigate();
 
