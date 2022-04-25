@@ -6,6 +6,7 @@ import "./App.css";
 import SearchForm from "./components/SearchForm";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Item from "./commons/Item";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
               <Route path="/media/*" element={<Media />}></Route>
               <Route path="/register" element={<Register />}></Route>
               <Route path="/login" element={<Login />}></Route>
+              <Route path="/:media/:id" element={<Item />} />
             </Routes>
           </div>
         </div>
