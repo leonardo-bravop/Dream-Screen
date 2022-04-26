@@ -12,6 +12,7 @@ import { persistUser } from "./state/user";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Users from "./components/Users";
+import UserFavorites from "./components/UserFavorites";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,14 @@ const App = () => {
                 path="/*"
                 element={<p>Error 404: Page not found</p>}
               ></Route>
+              {user.id ? (
+                <>
+                  <Route
+                    path="/user/my-favorites"
+                    element={<UserFavorites/>}
+                  ></Route>
+                </>
+              ) : null}
             </Routes>
           </div>
         </div>
