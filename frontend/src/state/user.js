@@ -14,7 +14,9 @@ export const persistUser = createAsyncThunk("PERSIST", () => {
 });
 
 export const sendSignUpRequest = createAsyncThunk("REGISTER", (userData) => {
-  return axios.post("/api/register", userData).then((res) => res);
+  return axios.post("/api/register", userData).then((res) => {
+    console.log(`res es`, res);
+    return res});
 });
 
 export const addToFavoriteMovies = createAsyncThunk(
@@ -47,6 +49,7 @@ const userReducer = createReducer(
     [sendLoginRequest.fulfilled]: (state, action) => action.payload,
     [sendLoginRequest.rejected]: (state, action) => {return {error: "Invalid credentials"}},
     [sendSignUpRequest.fulfilled]: (state, action) => action.payload,
+    [sendSignUpRequest.rejected]: (state, action) => {return {error: "Invalid data values"}},
     [sendLogoutRequest.fulfilled]: (state, action) => {
       return {};
     },

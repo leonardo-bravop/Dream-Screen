@@ -2,6 +2,8 @@ import useInput from "../../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import { sendSignUpRequest, sendLoginRequest } from "../../state/user";
 import { useNavigate } from "react-router";
+import Spinner from "../Spinner";
+import { useState } from "react";
 
 const Register = () => {
   const email = useInput();
@@ -12,6 +14,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,12 +29,18 @@ const Register = () => {
         if (data.payload) {
           dispatch(
             sendLoginRequest({ email: email.value, password: password.value })
-          ).then(() => navigate("/"));
+          ).then(() => {
+            setLoading(false)
+            navigate("/");
+          });
+          setLoading(true)
         } else {
           alert(`User already exists. Please use another email.`);
         }
+        setLoading(false);
       })
       .catch((error) => console.log(`ERROR ES:`, error));
+    setLoading(true);
   };
 
   return (
@@ -55,6 +64,8 @@ const Register = () => {
               Sign up
             </button>
           </form>
+          {loading && <Spinner />}
+          {user.error && <p style={{ color: "red" }}>Invalid values</p>}
         </div>
       ) : null}
     </>

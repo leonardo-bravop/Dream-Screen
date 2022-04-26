@@ -5,6 +5,7 @@ import NavbarLinks from "./NavbarLinks";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const opened = {value: isOpen, setValue: setIsOpen}
 
   return (
     <nav className="navbar">
@@ -17,7 +18,7 @@ const Navbar = () => {
         </Link>
 
         <div className="normal-navigation">
-          <NavbarLinks />
+          <NavbarLinks opened={opened} />
         </div>
         <div
           style={{ display: "flex", flexDirection: "column", height: "100%" }}
@@ -43,7 +44,7 @@ const Navbar = () => {
           </div>
           {isOpen && (
             <div className="mobile-navigation">
-              <NavbarLinks />
+              <NavbarLinks opened={opened} />
             </div>
           )}
         </div>
