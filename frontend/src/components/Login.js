@@ -1,21 +1,27 @@
 import useInput from "../hooks/useInput";
 import { useNavigate } from "react-router";
 import { sendLoginRequest } from "../state/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import Spinner from "./Spinner";
 
 const Login = () => {
   const navigate = useNavigate();
   const email = useInput();
   const password = useInput();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const user = useSelector(state=>state.user)
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     dispatch(sendLoginRequest({ email: email.value, password: password.value }))
       .then((data) => {
         if (data.payload) navigate(`/`);
+        setLoading(false)
       })
       .catch((err) => alert(`Invalid email or password \nPlease try again.`));
+    setLoading(true)
   };
 
   return (
@@ -35,6 +41,8 @@ const Login = () => {
           Login
         </button>
       </form>
+      {loading && <Spinner/>}
+      {user.error && <p>Invalid Credentials</p>}
     </div>
   );
 };

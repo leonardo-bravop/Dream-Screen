@@ -10,12 +10,12 @@ import Item from "./commons/Item";
 import SearchListGrid from "./commons/SearchListGrid";
 import { persistUser } from "./state/user";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Users from "./components/Users";
-
 
 const App = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(persistUser()).then((user) => {});
   }, []);
@@ -30,17 +30,28 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Content />}></Route>
               <Route path="/media/*" element={<Media />}></Route>
-              <Route path="/register" element={<Register />}></Route>
-              <Route path="/login" element={<Login />}></Route>
+              {!user.id ? (
+                <>
+                  <Route path="/register" element={<Register />}></Route>
+                  <Route path="/login" element={<Login />}></Route>
+                </>
+              ) : null}
               <Route path="/:media/:id" element={<Item />} />
               <Route
                 path={`/media/:mediaType/search/:searchValue`}
                 element={<SearchListGrid />}
               />
-              <Route path="/user/search" element={<p>Search any user on Dream Screen!</p>}></Route>
+              <Route
+                path="/user/search"
+                element={<p>Search any user on Dream Screen!</p>}
+              ></Route>
               <Route
                 path="/user/search/:searchValue"
                 element={<Users />}
+              ></Route>
+              <Route
+                path="/*"
+                element={<p>Error 404: Page not found</p>}
               ></Route>
             </Routes>
           </div>

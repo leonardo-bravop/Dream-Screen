@@ -45,6 +45,7 @@ const userReducer = createReducer(
   {},
   {
     [sendLoginRequest.fulfilled]: (state, action) => action.payload,
+    [sendLoginRequest.rejected]: (state, action) => {return {error: "Invalid credentials"}},
     [sendSignUpRequest.fulfilled]: (state, action) => action.payload,
     [sendLogoutRequest.fulfilled]: (state, action) => {
       return {};
