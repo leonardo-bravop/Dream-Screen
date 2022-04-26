@@ -8,8 +8,18 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login";
 import Item from "./commons/Item";
 import SearchListGrid from "./commons/SearchListGrid";
+import { persistUser } from "./state/user";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import Users from "./components/Users";
+
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(persistUser()).then((user) => {});
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -27,7 +37,11 @@ const App = () => {
                 path={`/media/:mediaType/search/:searchValue`}
                 element={<SearchListGrid />}
               />
-              <Route path="/user/search" element={<></>}></Route>
+              <Route path="/user/search" element={<p>Search any user on Dream Screen!</p>}></Route>
+              <Route
+                path="/user/search/:searchValue"
+                element={<Users />}
+              ></Route>
             </Routes>
           </div>
         </div>

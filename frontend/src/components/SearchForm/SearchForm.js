@@ -5,7 +5,7 @@ import "./SearchForm.css";
 const SearchForm = () => {
   const search = useInput();
 
-  const matchUser = useMatch("/user/:id/*");
+  const matchUser = useMatch("/user/search/*");
   const navigate = useNavigate();
 
   const match1 = useMatch("/");

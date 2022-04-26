@@ -1,16 +1,10 @@
-.flexRowJustified {
-  /* display: flex;
-  align-items: center;
-  justify-content: flex-start; */
+.slider {
   width: 70%;
-  /* overflow: scroll; */
 }
 
 @media (max-width: 750px) {
-  .flexRowJustified {
-    width: 70%;
-    flex-wrap: wrap;
-    justify-content: center;
+  .slider {
+    display: none;
   }
 }
 

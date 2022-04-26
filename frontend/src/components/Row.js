@@ -24,8 +24,7 @@ const Row = ({ media }) => {
     };
 
   return (
-    <div className="flexRowJustified">
-      <div>
+      <div className="slider">
         <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
           {media.map((element) => (
             <Card
@@ -39,7 +38,6 @@ const Row = ({ media }) => {
           ))}
         </ScrollMenu>
       </div>
-    </div>
   );
 };
 

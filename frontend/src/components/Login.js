@@ -13,8 +13,7 @@ const Login = () => {
     e.preventDefault();
     dispatch(sendLoginRequest({ email: email.value, password: password.value }))
       .then((data) => {
-        console.log(data)
-        navigate(`/`);
+        if (data.payload) navigate(`/`);
       })
       .catch((err) => alert(`Invalid email or password \nPlease try again.`));
   };

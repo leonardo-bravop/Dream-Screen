@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 const User = require("../models/User");
+const { Op } = require("sequelize");
 
 const router = express();
 
@@ -34,6 +35,19 @@ router.post("/logout", (req, res) => {
 router.get("/me", (req, res) => {
   if (!req.user) return res.sendStatus(401);
   res.send(req.user);
+});
+
+//Search users by nickname
+router.get("/users/search/:searchValue", (req, res) => {
+  const { searchValue } = req.params;
+  console.log(`params es`, req.params);
+  User.findAll({
+    attributes: ["id", "nickName", "favoriteMovies", "favoriteTv"],
+    where: { nickName: { [Op.like]: `%${searchValue}%` } },
+  }).then((users) => {
+    if(users.length) res.send(users);
+    else res.sendStatus(204)
+  });
 });
 
 module.exports = router;
