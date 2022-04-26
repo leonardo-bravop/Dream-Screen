@@ -42,6 +42,16 @@ const NavbarLinks = ({ opened }) => {
         >
           <button className="mediaNavButton">Users</button>
         </Link>
+        {user.id? (
+           <Link
+           to="/user/my-favorites"
+           onClick={() => {
+             opened.setValue(false);
+           }}
+         >
+           <button className="mediaNavButton">My Favorites</button>
+         </Link>
+        ) : null}
       </div>
       <div className="userButtons">
         {user.id ? (

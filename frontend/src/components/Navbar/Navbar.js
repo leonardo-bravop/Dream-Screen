@@ -11,6 +11,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="logoDiv">
         <Link to={"/"}>
+          
           <img src={"/tmdbLogo2.png"} style={{ height: "50px" }} />{" "}
         </Link>
         <Link to="/">
@@ -21,9 +22,9 @@ const Navbar = () => {
           <NavbarLinks opened={opened} />
         </div>
         <div
-          style={{ display: "flex", flexDirection: "column", height: "100%" }}
+          style={{ display: "flex", flexDirection: "column", justifySelf: "flex-end" }}
         >
-          <div style={{ alignSelf: "flex-end" }}>
+          <div style={{ alignSelf: "flex-end"}}>
             {!isOpen ? (
               <img
                 src="/menu.svg"
@@ -43,8 +44,8 @@ const Navbar = () => {
             )}
           </div>
           {isOpen && (
-            <div className="mobile-navigation">
-              <NavbarLinks opened={opened} />
+            <div className="mobile-navigation" style={{height: "100vh"}}>
+              <NavbarLinks setIsOpen={setIsOpen}/>
             </div>
           )}
         </div>

@@ -107,13 +107,15 @@
 }
 
 
-@media (max-width: 990px) {
+@media (max-width: 1200px) {
   .userButtons {
     width: 100%;
     margin: 20px 0px
   }
 
   .mediaNavDiv {
+    /* position: relative; */
+    /* top: 1000px; */
     margin: 20px 20px;
     display: flex;
     flex-direction: column;
@@ -142,7 +144,7 @@
   }
 }
 
-@media (min-width: 990px) {
+@media (min-width: 1200px) {
   .hamburger-menu,
   .close-menu,
   .mobile-navigation {
@@ -155,7 +157,7 @@
 }
 
 .mobile-navigation {
-  top: 100px;
+  height: 100px;
   background-color: #1e1eac;
 }
 
@@ -170,6 +172,7 @@
 }
 
 .close-menu {
+  padding-top: 100vh;
   margin: 25px;
   right: 35px;
   height: 36px;
