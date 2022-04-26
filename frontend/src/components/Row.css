@@ -1,9 +1,9 @@
 .flexRowJustified {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: flex-start;
-  width: 60%;
-  overflow: scroll;
+  justify-content: flex-start; */
+  width: 70%;
+  /* overflow: scroll; */
 }
 
 @media (max-width: 750px) {
@@ -12,4 +12,22 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+}
+
+.arrow-icon > svg {
+  height: 50px;
+  width: 50px;
+}
+
+.arrow-button {
+  border: none;
+  background-color: transparent;
+}
+
+.arrow-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  margin: 0 20px;
 }

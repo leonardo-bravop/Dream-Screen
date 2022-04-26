@@ -78,6 +78,10 @@
   border-radius: 5px;
 }
 
+#LoginButton {
+  background-color: inherit;
+  color: white;
+}
 
 @keyframes expand {
   0% {
@@ -123,6 +127,14 @@
 
   .normal-navigation {
     display: none;
+  }
+
+  .navButton:hover {
+    background-color:#ffae00
+  }
+
+  #LoginButton:hover {
+    color:#ffae00
   }
 }
 

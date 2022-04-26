@@ -1,18 +1,15 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { VisibilityContext } from "react-horizontal-scrolling-menu";
-
 import "./Card.css";
 
-const Card = ({ data, itemId, title, onClick }) => {
+const Card = ({ data, itemId }) => {
 
-  const visibility = useContext(VisibilityContext);
+  
 
   let mediaType;
   data.name ? (mediaType = "tv") : (mediaType = "movie");
 
   return (
-    <div className="card"  onClick={() => onClick(visibility)} tabIndex={0}>
+    <div className="card">
       <Link to={`/${mediaType}/${data.id}`}>
         {/* <div className="card-img"> */}
         <figure className="image">

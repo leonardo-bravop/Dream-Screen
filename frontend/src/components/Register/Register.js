@@ -1,6 +1,6 @@
-import useInput from "../hooks/useInput";
+import useInput from "../../hooks/useInput";
 import { useDispatch } from "react-redux";
-import { sendSignUpRequest, sendLoginRequest } from "../state/user";
+import { sendSignUpRequest, sendLoginRequest } from "../../state/user";
 import { useNavigate } from "react-router";
 
 const Register = () => {

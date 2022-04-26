@@ -1,24 +1,21 @@
 import { Route, Routes } from "react-router";
 import Content from "./components/Content";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Media from "./components/Media";
 import "./App.css";
-import SearchForm from "./components/SearchForm";
-import Register from "./components/Register";
+import SearchForm from "./components/SearchForm/SearchForm";
+import Register from "./components/Register/Register";
 import Login from "./components/Login";
 import Item from "./commons/Item";
-import useInput from "./hooks/useInput";
 import SearchListGrid from "./commons/SearchListGrid";
 
 const App = () => {
-  const search = useInput();
-
   return (
     <>
       <Navbar />
       <div className="firstFlex">
         <div className="columna">
-          <SearchForm search={search} />
+          <SearchForm />
           <div className="content">
             <Routes>
               <Route path="/" element={<Content />}></Route>
@@ -27,9 +24,10 @@ const App = () => {
               <Route path="/login" element={<Login />}></Route>
               <Route path="/:media/:id" element={<Item />} />
               <Route
-                path={`/search/:mediaType/:searchValue`}
-                element={<SearchListGrid/>}
+                path={`/media/:mediaType/search/:searchValue`}
+                element={<SearchListGrid />}
               />
+              <Route path="/user/search" element={<></>}></Route>
             </Routes>
           </div>
         </div>

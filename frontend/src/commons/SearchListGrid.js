@@ -1,14 +1,19 @@
 import Card from "./Card";
-import { useParams, useNavigate } from "react-router";
+import { useMatch, useParams, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const SearchListGrid = ({ foundMedia }) => {
+const SearchListGrid = () => {
   const navigate = useNavigate();
   const [anotherMedia, setAnotherMedia] = useState([]);
   const tmdbAPI = "https://api.themoviedb.org/3";
   const key = "46b1d60d45fa9282f81dabe7e845515e";
-  const { mediaType, searchValue } = useParams();
+  const matchGeneral = useMatch("/");
+  let { mediaType, searchValue } = useParams();
+
+  if(matchGeneral) {
+    mediaType = "multi"
+  }
 
   useEffect(() => {
     axios
@@ -28,7 +33,7 @@ const SearchListGrid = ({ foundMedia }) => {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
-        maxWidth: `1300px`,
+        maxWidth: `60%`,
       }}
     >
       {anotherMedia.map((movie) => (

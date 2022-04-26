@@ -4,21 +4,21 @@ import Row from "./Row";
 import { Routes, Route } from "react-router";
 
 const Content = () => {
-  const [popularMovies, setPopularMovies] = useState([]);
+  const [popularMedia, setPopularMedia] = useState([]);
   const tmdbAPI = "https://api.themoviedb.org/3";
   const apiKey = "46b1d60d45fa9282f81dabe7e845515e";
 
   useEffect(() => {
     axios
-      .get(`${tmdbAPI}/movie/popular?api_key=${apiKey}&language=en-US&page=1`)
+      .get(`${tmdbAPI}/trending/all/day?api_key=${apiKey}&language=en-US&page=1`)
       .then((res) => {
-        setPopularMovies(res.data.results.slice(0, 7));
+        setPopularMedia(res.data.results);
       });
   }, []);
 
   return (
     <Routes>
-      <Route path="" element={<Row media={popularMovies} />} />
+      <Route path="" element={<Row media={popularMedia} />} />
     </Routes>
   );
 };

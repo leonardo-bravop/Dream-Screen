@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { sendLogoutRequest } from "../state/user";
+import { sendLogoutRequest } from "../../state/user";
 import "./Navbar.css";
 
 const NavbarLinks = () => {
@@ -64,7 +64,7 @@ const NavbarLinks = () => {
             <Link to={"/login"}>
               <button
                 className="navButton"
-                style={{ backgroundColor: "inherit", color: "white" }}
+                id="LoginButton"
               >
                 Login
               </button>

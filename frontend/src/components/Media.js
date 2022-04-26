@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router";
+import Movies from "./Movies/Movies";
+import TvShows from "./TvShows/TvShows";
 
 const Media = () => {
   return (
     <Routes>
-      <Route path="/movie" element={<p>Popular Movies</p>}></Route>
-      <Route path="/tv" element={<p>Popular Tv Shows</p>}></Route>
+      <Route path="/movie" element={<Movies/>}></Route>
+      <Route path="/tv" element={<TvShows/>}></Route>
     </Routes>
   );
 };
