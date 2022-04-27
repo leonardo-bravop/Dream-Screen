@@ -2,21 +2,18 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import MediaRow from "../MediaRow";
 
-const TvShows = () =>{
+const TvShows = () => {
   const [selected, setSelected] = useState("popular");
   const statesArray = ["popular", "top_rated"];
 
-    return (
-       <>
-        <div className="movies-tagnav">
+  return (
+    <>
+      <div className="movies-tagnav">
         {statesArray.map((state) => {
           return (
-            <Link to={state}>
+            <Link to={state} onClick={() => setSelected(state)}>
               <div className="tagnav-div">
-                <button
-                  className="tagnav-button"
-                  onClick={() => setSelected(state)}
-                >
+                <button className="tagnav-button">
                   {state[0].toUpperCase() +
                     state.slice(1, state.length).split("_").join(" ")}
                 </button>
@@ -28,8 +25,9 @@ const TvShows = () =>{
           );
         })}
       </div>
-        <MediaRow mediaType={"tv"} state={selected}/></>
-    )
-}
+      <MediaRow mediaType={"tv"} state={selected} />
+    </>
+  );
+};
 
 export default TvShows;

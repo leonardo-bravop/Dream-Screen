@@ -11,12 +11,9 @@ const Movies = () => {
       <div className="movies-tagnav">
         {statesArray.map((state) => {
           return (
-            <Link to={state}>
+            <Link to={state} onClick={() => setSelected(state)}>
               <div className="tagnav-div">
-                <button
-                  className="tagnav-button"
-                  onClick={() => setSelected(state)}
-                >
+                <button className="tagnav-button">
                   {state[0].toUpperCase() +
                     state.slice(1, state.length).split("_").join(" ")}
                 </button>
