@@ -4,15 +4,18 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { addToFavoriteMovies } from "../state/user";
-import "./Item.css"
+import Spinner from "../components/Spinner";
+import "./Item.css";
 
 const Item = () => {
   const tmdbAPI = "https://api.themoviedb.org/3";
   const key = "46b1d60d45fa9282f81dabe7e845515e";
   const navigate = useNavigate();
   const { media, id } = useParams();
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     title: "",
     genres: "",
@@ -31,8 +34,9 @@ const Item = () => {
     if (!user.id) alert("Please Login to save in favorites");
     else {
       dispatch(addToFavoriteMovies({ mediaType, mediaId: data.id })).then(
-        (res) => res
+        (res) => setLoading(false)
       );
+      setLoading(true);
     }
   };
 
@@ -44,18 +48,37 @@ const Item = () => {
         setData(data);
       })
       .catch(() => {
-        navigate("/404");
+        console.log(`algo salio mal`);
       });
   }, [id]);
 
   return (
     <div className="movieContent">
+      {loading && (
+        <div>
+          <h3>Adding to favorites</h3>
+          <Spinner />
+        </div>
+      )}
       <div id="itemPicture">
-        <button className="heartDivItem" onClick={onFavoriteClick}>
-          <AiOutlineHeart />
-        </button>
+        {user.id && (user.favoriteMovies.includes(id) || user?.favoriteTv.includes(id)) ? (
+          <button className="heartDivItem" o
+          // onClick={onFavoriteClick}
+          >
+            <AiFillHeart />
+          </button>
+        ) : (
+          <button className="heartDivItem" onClick={onFavoriteClick}>
+            <AiOutlineHeart />
+          </button>
+        )}
         <img
-          style={{ width: "300px", height: "450px", objectFit: "cover", borderRadius: '4px' }}
+          style={{
+            width: "300px",
+            height: "450px",
+            objectFit: "cover",
+            borderRadius: "4px",
+          }}
           src={
             data.poster_path
               ? `https://image.tmdb.org/t/p/w300/${data.poster_path}`
@@ -75,24 +98,26 @@ const Item = () => {
                   ? data.genres.map((genre) => {
                       return (
                         <div key={genre.id} style={{ margin: "5px 8px" }}>
-                          <Link to={`/${mediaType}/genre/${genre.name}`}>{genre.name}</Link>
+                          <Link to={`/${mediaType}/genre/${genre.name}`}>
+                            {genre.name}
+                          </Link>
                         </div>
                       );
                     })
                   : []}
               </span>
-              {data.runtime? <span className="runtime"> {data.runtime} minutes</span> : null}
+              {data.runtime ? (
+                <span className="runtime"> {data.runtime} minutes</span>
+              ) : null}
             </div>
           </div>
           <ul className="actions">User score: {data.vote_average}</ul>
 
           <div className="header_info">
-            <h3 className="tagline">
-              {data.tagline}
-            </h3>
+            <h3 className="tagline">{data.tagline}</h3>
 
             <h3>Overview</h3>
-            <div className="overview" >
+            <div className="overview">
               <p>{data.overview}</p>
             </div>
           </div>

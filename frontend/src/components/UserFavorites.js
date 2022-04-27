@@ -15,7 +15,7 @@ const UserFavorites = () => {
 
   return (
     <div>
-      <div >
+      {/* <div >
         <form style={{display: "flex"}}>
           <div>
             <input type="radio" name="media"></input>
@@ -31,7 +31,8 @@ const UserFavorites = () => {
             <label>Fav Tv Shows</label>
           </div>
         </form>
-      </div>
+      </div> */}
+
       <h2>Favorites</h2>
       <h3>Favorite Movies</h3>
       <div className="favoriteMovies">

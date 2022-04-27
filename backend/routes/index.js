@@ -38,7 +38,7 @@ router.get("/me", (req, res) => {
 });
 
 //Add and delete favorites
-router.put("/api/favorites", (req, res) => {
+router.put("/favorites", (req, res) => {
   const { userId, mediaType, mediaId } = req.query;
   User.findByPk(userId).then((user) => {
     let favoriteMedia;
@@ -58,7 +58,7 @@ router.put("/api/favorites", (req, res) => {
   });
 });
 
-router.delete("/api/favorites", (req, res) => {
+router.delete("/favorites", (req, res) => {
   const { userId, MediaId, mediaType } = req.query;
   let favoriteMedia;
   mediaType === "movie"

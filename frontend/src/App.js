@@ -37,7 +37,6 @@ const App = () => {
                   <Route path="/login" element={<Login />}></Route>
                 </>
               ) : null}
-              <Route path="/:media/:id" element={<Item />} />
               <Route
                 path={`/media/:mediaType/search/:searchValue`}
                 element={<SearchListGrid />}
@@ -50,18 +49,19 @@ const App = () => {
                 path="/user/search/:searchValue"
                 element={<Users />}
               ></Route>
-              <Route
+              {/* <Route
                 path="/*"
                 element={<p>Error 404: Page not found</p>}
-              ></Route>
+              ></Route> */}
               {user.id ? (
                 <>
                   <Route
                     path="/user/my-favorites"
-                    element={<UserFavorites/>}
+                    element={<UserFavorites />}
                   ></Route>
                 </>
               ) : null}
+              <Route path="/media/:media/:id" element={<Item />} />
             </Routes>
           </div>
         </div>

@@ -2,7 +2,11 @@ import MediaRow from "../MediaRow";
 
 const TvShows = () =>{
     return (
-        <MediaRow mediaType={"tv"}/>
+       <>
+        <div>
+        <h2>Popular Tv Shows:</h2>
+      </div>
+        <MediaRow mediaType={"tv"}/></>
     )
 }
 

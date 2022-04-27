@@ -13,7 +13,7 @@ const Card = ({ data, itemId, title, onClick }) => {
 
   return (
     <div className="card"  onClick={() => onClick(visibility)} tabIndex={0}>
-      <Link to={`/${mediaType}/${data.id}`}>
+      <Link to={`/media/${mediaType}/${data.id}`}>
         {/* <div className="card-img"> */}
         <figure className="image">
           <img
