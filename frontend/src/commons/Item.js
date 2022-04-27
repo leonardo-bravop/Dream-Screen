@@ -43,9 +43,9 @@ const Item = () => {
   useEffect(() => {
     axios
       .get(`${tmdbAPI}/${media}/${id}?api_key=${key}&language=en-US`)
-      .then((res) => res.data)
-      .then((data) => {
-        setData(data);
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
       })
       .catch(() => {
         console.log(`algo salio mal`);
@@ -53,77 +53,108 @@ const Item = () => {
   }, [id]);
 
   return (
-    <div className="movieContent">
-      {loading && (
-        <div>
-          <h3>Adding to favorites</h3>
-          <Spinner />
-        </div>
-      )}
-      <div id="itemPicture">
-        {user.id && (user.favoriteMovies.includes(id) || user?.favoriteTv.includes(id)) ? (
-          <button className="heartDivItem" o
-          // onClick={onFavoriteClick}
-          >
-            <AiFillHeart />
-          </button>
-        ) : (
-          <button className="heartDivItem" onClick={onFavoriteClick}>
-            <AiOutlineHeart />
-          </button>
-        )}
+    <>
+      <div className="banner-div">
         <img
-          style={{
-            width: "300px",
-            height: "450px",
-            objectFit: "cover",
-            borderRadius: "4px",
-          }}
-          src={
-            data.poster_path
-              ? `https://image.tmdb.org/t/p/w300/${data.poster_path}`
-              : "/placeholder-image.png"
-          }
-        ></img>
+          src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`}
+          className="banner-img"
+        />
       </div>
-
-      <div className="header_poster_wrapper" style={{ margin: "20px" }}>
-        <section className="itemDescription">
-          <div className="title">
-            <h2>{data.title || data.name}</h2>
-
-            <div className="facts">
-              <span className="genres" style={{ display: "flex" }}>
-                {data.genres
-                  ? data.genres.map((genre) => {
-                      return (
-                        <div key={genre.id} style={{ margin: "5px 8px" }}>
-                          <Link to={`/${mediaType}/genre/${genre.name}`}>
-                            {genre.name}
-                          </Link>
-                        </div>
-                      );
-                    })
-                  : []}
-              </span>
-              {data.runtime ? (
-                <span className="runtime"> {data.runtime} minutes</span>
-              ) : null}
-            </div>
+      <div className="banner-div2"></div>
+      {/* <div className="content-div"> */}
+      <div className="movieContent">
+        {loading && (
+          <div>
+            <h3>Adding to favorites</h3>
+            <Spinner />
           </div>
-          <ul className="actions">User score: {data.vote_average}</ul>
+        )}
+        <div id="itemPicture">
+          {user.id &&
+          (user.favoriteMovies.includes(id) ||
+            user?.favoriteTv.includes(id)) ? (
+            <button
+              className="heartDivItem"
+              o
+              // onClick={onFavoriteClick}
+            >
+              <AiFillHeart />
+            </button>
+          ) : (
+            <button className="heartDivItem" onClick={onFavoriteClick}>
+              <AiOutlineHeart />
+            </button>
+          )}
+          <img
+            style={{
+              width: "300px",
+              height: "450px",
+              objectFit: "cover",
+              borderRadius: "4px",
+            }}
+            src={
+              data.poster_path
+                ? `https://image.tmdb.org/t/p/w300/${data.poster_path}`
+                : "/placeholder-image.png"
+            }
+          ></img>
+        </div>
 
-          <div className="header_info">
-            <h3 className="tagline">{data.tagline}</h3>
+        <div className="header_poster_wrapper" style={{ margin: "20px" }}>
+          <section className="itemDescription">
+            <div className="title">
+              <h2>{data.title || data.name}</h2>
 
-            <h3>Overview</h3>
-            <div className="overview">
-              <p>{data.overview}</p>
+              <div className="facts">
+                <span className="genres" style={{ display: "flex" }}>
+                  {data.genres
+                    ? data.genres.map((genre) => {
+                        return (
+                          <div key={genre.id} className="genre-div">
+                            <Link to={`/${mediaType}/genre/${genre.name}`}>
+                              {genre.name}
+                            </Link>
+                          </div>
+                        );
+                      })
+                    : []}
+                </span>
+                {data.runtime ? (
+                  <span className="runtime"> {data.runtime} minutes</span>
+                ) : null}
+              </div>
             </div>
-          </div>
-        </section>
+            <div
+              style={{
+                border: `4px solid hsl(${
+                  14 * parseInt(data.vote_average)
+                },100%,50%)`,
+                width: "60px",
+                margin: "10px",
+                height: "60px",
+                display: "flex",
+                justifyContent: "center",
+                borderRadius: "100%",
+                backgroundColor: "rgba(0,0,0,0.2)"
+              }}
+            >
+              <div className="score-div">{data.vote_average}</div>
+            </div>
+            {/* <ul className="actions">User score: {data.vote_average}</ul> */}
+
+            <div className="header_info">
+              <h3 className="tagline">{data.tagline}</h3>
+
+              <h3>Overview</h3>
+              <div className="overview">
+                <p>{data.overview}</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        {/* </div> */}
       </div>
-    </div>
+    </>
   );
 };
 

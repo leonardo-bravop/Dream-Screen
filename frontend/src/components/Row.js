@@ -25,7 +25,7 @@ const Row = ({ media }) => {
 
   return (
       <div className="slider">
-        <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+        <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow} onWheel={onWheel}>
           {media.map((element) => (
             <Card
               data={element}
@@ -90,13 +90,14 @@ export function RightArrow() {
   }, [isLastItemVisible, visibleItemsWithoutSeparators]);
 
   return (
-    <Arrow disabled={disabled}>
+    <Arrow disabled={disabled} onClick={() => {
+      console.log(`flecha derecha`);
+      scrollNext()}}>
       <div
         className="arrow-icon"
         style={{
           cursor: disabled ? "default" : "pointer",
         }}
-        onClick={() => scrollNext()}
       >
         <BsArrowRightCircle />
       </div>
@@ -118,4 +119,20 @@ function Arrow({ children, disabled, onClick }) {
       </button>
     </div>
   );
+}
+
+
+
+function onWheel(apiObj, ev) {
+  var isThouchpad = Math.abs(ev.deltaX) !== 0 || Math.abs(ev.deltaY) < 15;
+  if (isThouchpad) {
+      ev.stopPropagation();
+      return;
+  }
+  if (ev.deltaY < 0) {
+      apiObj.scrollNext();
+  }
+  else if (ev.deltaY > 0) {
+      apiObj.scrollPrev();
+  }
 }

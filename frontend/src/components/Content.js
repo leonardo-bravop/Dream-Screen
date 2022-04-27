@@ -21,23 +21,23 @@ const Content = () => {
       });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(
-        `${tmdbAPI}/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
-      )
-      .then((res) => {
-        setMoviesPlaying(res.data.results);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `${tmdbAPI}/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
+  //     )
+  //     .then((res) => {
+  //       setMoviesPlaying(res.data.results);
+  //     });
+  // }, []);
 
-  useEffect(() => {
-    axios
-      .get(`${tmdbAPI}/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`)
-      .then((res) => {
-        setComingMovies(res.data.results);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${tmdbAPI}/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`)
+  //     .then((res) => {
+  //       setComingMovies(res.data.results);
+  //     });
+  // }, []);
 
   return (
     <Routes>
@@ -49,17 +49,17 @@ const Content = () => {
               <h2>Trending today:</h2>
             </div>
             <Row media={popularMedia} />
-            <Grid media={popularMedia.slice(0, 6)} />
-            <div>
+            {/* <Grid media={popularMedia.slice(0, 6)} /> */}
+            {/* <div>
               <h2>Now playing:</h2>
-            </div>
-            <Row media={moviesPLaying} />
-            <Grid media={moviesPLaying.slice(0, 6)} />
-            <div>
+            </div> */}
+            {/* <Row media={moviesPLaying} /> */}
+            {/* <Grid media={moviesPLaying.slice(0, 6)} /> */}
+            {/* <div>
               <h2>Coming soon:</h2>
-            </div>
-            <Row media={comingMovies} />
-            <Grid media={comingMovies.slice(0, 6)} />
+            </div> */}
+            {/* <Row media={comingMovies} /> */}
+            {/* <Grid media={comingMovies.slice(0, 6)} /> */}
             <div
               style={{
                 backgroundColor: "#1e1eac",
