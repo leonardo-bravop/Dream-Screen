@@ -61,7 +61,6 @@ const App = () => {
                   ></Route>
                 </>
               ) : null}
-              <Route path="/media/:media/:id" element={<Item />} />
             </Routes>
           </div>
         </div>

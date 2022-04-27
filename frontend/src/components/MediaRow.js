@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Row from "./Row";
+import ResponsiveGrid from "./ResponsiveGrid";
 import Spinner from "./Spinner";
 
-const MediaRow = ({ mediaType }) => {
-  const [popularMedia, setPopularMedia] = useState([]);
+const MediaRow = ({ mediaType, state }) => {
+  const [media, setMedia] = useState([]);
   const tmdbAPI = "https://api.themoviedb.org/3";
   const apiKey = "46b1d60d45fa9282f81dabe7e845515e";
 
@@ -13,20 +13,21 @@ const MediaRow = ({ mediaType }) => {
   useEffect(() => {
     axios
       .get(
-        `${tmdbAPI}/${mediaType}/popular?api_key=${apiKey}&language=en-US&page=1`
+        `${tmdbAPI}/${mediaType}/${state}?api_key=${apiKey}&language=en-US&page=1`
       )
       .then((res) => {
-        setPopularMedia(res.data.results);
+        setMedia(res.data.results);
         setLoading(false);
       });
     setLoading(true);
     console.log(`true`);
-  }, []);
+  }, [state]);
 
   return (
     <>
       {loading && <Spinner />}
-      {!loading && <Row media={popularMedia} />}
+      {!loading && <ResponsiveGrid media={media} />}
+
     </>
   );
 };

@@ -1,0 +1,54 @@
+.movies-tagnav {
+  display: flex;
+  justify-content: center;
+}
+
+.movies-tagnav > a{
+  text-decoration: none;
+  }
+
+@media (max-width: 1000px) {
+  .movies-tagnav {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto 20px;
+  }
+  .tagnav-line {
+    display: none;
+  }
+  .tagnav-button {
+    padding: 40px;
+  }
+}
+
+.tagnav-button {
+  background-color: transparent;
+  font-size: 1.2em;
+  height: 50px;
+  width: 160px;
+  padding: 0px 20px;
+  margin: 0 10px;
+  border-style: none;
+  cursor: pointer;
+}
+
+.tagnav-button:hover {
+  /* background-color: transparent; */
+  font-weight: 600;
+  color: blue;
+  font-size: 1.2em;
+  padding: 0px 20px;
+  /* border: none; */
+}
+
+.tagnav-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tagnav-line {
+  width: 30px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
