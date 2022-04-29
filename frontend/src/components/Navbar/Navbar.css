@@ -5,9 +5,14 @@
   background-color: #1e1eac;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-content: center;
   height: 80px;
+  transition: top 0.3s;
+}
+
+.navbar--hidden {
+  top: -50px;
 }
 
 .logo-img {

@@ -25,9 +25,9 @@ const Users = () => {
 
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <span className="tableColumn">User nickName</span>
+      <div style={{ display: "flex", flexDirection: "column", alignItems:"center" }}>
+        <div className="userRow">
+          <div className="tableColumn">User nickName</div>
           <span className="tableColumn">Favorite Movies</span>
           <span className="tableColumn">Favorite Tv Shows</span>
         </div>
@@ -39,7 +39,7 @@ const Users = () => {
             let favoriteTv = user.favoriteTv.split(" ");
             favoriteTv.pop();
             return (
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div className="userRow">
                 <span className="tableColumn">
                   <Link to={`/user/profile/${user.id}`}>{user.nickName}</Link>
                 </span>

@@ -44,7 +44,7 @@ const SearchForm = () => {
           className="searchInput"
           placeholder={
             matchGeneral
-              ? "What are we watching?"
+              ? "Movie or TvShow"
               : matchTv
               ? "Search a TV show"
               : matchUser
