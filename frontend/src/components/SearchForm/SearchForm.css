@@ -4,7 +4,8 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  border: 2px solid;
+  /* border: 2px solid; */
+  box-shadow: 4px 4px 6px 2px rgba(157, 156, 156, 0.4);
   font-size: 1.2em;
   border-radius: 25px;
 }
@@ -27,7 +28,7 @@
 .searchSubmitButton {
   margin: 0px;
   font-size: 0.9em;
-  height: 46px;
+  height: 48px;
   padding: 0 20px;
   background-color: #1e1eac;
   color: white;
@@ -41,7 +42,7 @@
 .searchLens {
   margin: 0px;
   font-size: 0.9em;
-  height: 46px;
+  height: 48px;
   padding: 0 20px;
   background-color: #1e1eac;
   color: white;

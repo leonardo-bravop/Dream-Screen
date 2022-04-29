@@ -1,11 +1,13 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { sendLogoutRequest } from "../../state/user";
 import "./Navbar.css";
 
-const NavbarLinks = ({ opened }) => {
+const NavbarLinks = ({ opened, selected }) => {
   const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,35 +23,40 @@ const NavbarLinks = ({ opened }) => {
         <Link
           to="/media/movie"
           onClick={() => {
+            console.log(`soy movies button`);
             opened.setValue(false);
+            selected.setValue("movies")
           }}
         >
-          <button className="mediaNavButton">Movies</button>
+          {selected.value==="movies"? <button className="selectedMediaNavButton">Movies</button> :  <button className="mediaNavButton">Movies</button>}
         </Link>
         <Link
           to="/media/tv"
           onClick={() => {
             opened.setValue(false);
+            selected.setValue("tv-shows")
           }}
         >
-          <button className="mediaNavButton">TV Shows</button>
+          {selected.value==="tv-shows"? <button className="selectedMediaNavButton">TV Shows</button> :  <button className="mediaNavButton">TV Shows</button>}
         </Link>
         <Link
           to="/user/search"
           onClick={() => {
             opened.setValue(false);
+            selected.setValue("users")
           }}
         >
-          <button className="mediaNavButton">Users</button>
+          {selected.value==="users"? <button className="selectedMediaNavButton">Users</button> :  <button className="mediaNavButton">Users</button>}
         </Link>
         {user.id? (
            <Link
            to="/user/my-favorites"
            onClick={() => {
              opened.setValue(false);
+             selected.setValue("my-favorites")
            }}
          >
-           <button className="mediaNavButton">My Favorites</button>
+          {selected.value==="my-favorites"? <button className="selectedMediaNavButton">My Favorites</button> :  <button className="mediaNavButton">My Favorites</button>}
          </Link>
         ) : null}
       </div>
@@ -60,6 +67,7 @@ const NavbarLinks = ({ opened }) => {
               to={`/user/profile`}
               onClick={() => {
                 opened.setValue(false);
+                selected.setValue("")
               }}
             >
               <div
@@ -95,6 +103,7 @@ const NavbarLinks = ({ opened }) => {
               to={"/login"}
               onClick={() => {
                 opened.setValue(false);
+                selected.setValue("")
               }}
             >
               <button className="navButton" id="LoginButton">
@@ -105,6 +114,7 @@ const NavbarLinks = ({ opened }) => {
               to={"/register"}
               onClick={() => {
                 opened.setValue(false);
+                selected.setValue("")
               }}
             >
               <button className="navButton">SignUp</button>

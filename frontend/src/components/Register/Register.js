@@ -4,6 +4,7 @@ import { sendSignUpRequest, sendLoginRequest } from "../../state/user";
 import { useNavigate } from "react-router";
 import Spinner from "../Spinner";
 import { useState } from "react";
+import "./Register.css"
 
 const Register = () => {
   const email = useInput();
@@ -37,7 +38,6 @@ const Register = () => {
         } else {
           alert(`User already exists. Please use another email.`);
         }
-        setLoading(false);
       })
       .catch((error) => console.log(`ERROR ES:`, error));
     setLoading(true);
@@ -46,7 +46,7 @@ const Register = () => {
   return (
     <>
       {!user.id ? (
-        <div className="flexColumnAligned" style={{ marginTop: "50px" }}>
+        <div className="flexColumnAligned userForm" style={{ marginTop: "50px" }}>
           <img style={{ width: "100px" }} src="/register.png" />
           <span
             style={{ fontSize: "1.5em", fontWeight: "bold", marginTop: "20px" }}

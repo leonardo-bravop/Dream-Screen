@@ -1,6 +1,9 @@
 .movies-tagnav {
   display: flex;
   justify-content: center;
+  margin: 0 20px;
+  margin-top: 10px;
+  
 }
 
 .movies-tagnav > a{
@@ -11,7 +14,6 @@
   .movies-tagnav {
     flex-wrap: wrap;
     justify-content: center;
-    margin: auto 20px;
   }
   .tagnav-line {
     display: none;

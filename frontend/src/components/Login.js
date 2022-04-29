@@ -4,6 +4,7 @@ import { sendLoginRequest } from "../state/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Spinner from "./Spinner";
+import "./Login.css"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flexColumnAligned" style={{ marginTop: "50px" }}>
+    <div className="flexColumnAligned userForm" style={{ marginTop: "50px" }}>
       <img style={{ width: "100px" }} src="/login.png" />
       <span
         style={{ fontSize: "1.5em", fontWeight: "bold", marginTop: "20px" }}

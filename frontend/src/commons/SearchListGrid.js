@@ -42,7 +42,7 @@ const SearchListGrid = () => {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
-        margin: "0 10%"
+        margin: "20px 10%"
       }}
     >
       {loading && <Spinner />}
