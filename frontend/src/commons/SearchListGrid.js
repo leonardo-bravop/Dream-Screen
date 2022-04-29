@@ -15,25 +15,25 @@ const SearchListGrid = () => {
 
   let { mediaType, searchValue } = useParams();
 
-  if(matchGeneral) {
-    mediaType = "multi"
+  if (matchGeneral) {
+    mediaType = "multi";
   }
 
   useEffect(() => {
-    setAnotherMedia([])
+    setAnotherMedia([]);
     axios
       .get(
         `${tmdbAPI}/search/${mediaType}?api_key=${key}&language=en-US&query=${searchValue}`
       )
       .then((res) => res.data)
       .then((data) => {
-        setAnotherMedia(data.results)
-        setLoading(false)
+        setAnotherMedia(data.results);
+        setLoading(false);
       })
       .catch(() => {
         navigate("/404");
       });
-      setLoading(true)
+    setLoading(true);
   }, [searchValue]);
 
   return (
@@ -42,13 +42,13 @@ const SearchListGrid = () => {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
-        maxWidth: `60%`,
+        margin: "0 10%"
       }}
     >
-      {loading && <Spinner/>}
+      {loading && <Spinner />}
       {anotherMedia.map((media) => (
         <div className="cardLinkDiv" key={media.id}>
-          <Card data={media} title={media.title || media.name}/>
+          <Card data={media} title={media.title || media.name} />
         </div>
       ))}
     </div>

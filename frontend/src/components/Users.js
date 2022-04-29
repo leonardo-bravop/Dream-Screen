@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "../components/Spinner";
 import Spinner from "../components/Spinner";
+import "./UserSearch.css";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ const Users = () => {
   const { searchValue } = useParams();
 
   useEffect(() => {
-    setUsers([])
+    setUsers([]);
     axios.get(`/api/users/search/${searchValue}`).then((res) => {
       console.log(`res es`, res);
       setUsers(res.data);
@@ -25,39 +26,37 @@ const Users = () => {
   return (
     <>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        
-        <table>
-          <tbody>
-            <tr>
-              <th>User nickName</th>
-              <th className="tableColumn">Favorite Movies</th>
-              <th>Favorite Tv Shows</th>
-            </tr>
-            {!!users.length && users.map((user) => {
-              let favoriteMovies = user.favoriteMovies.split(" ");
-              favoriteMovies.pop();
-              let favoriteTv = user.favoriteTv.split(" ");
-              favoriteTv.pop();
-              return (
-                <tr>
-                  <Link to={`/user/profile/${user.id}`}>
-                    <td>{user.nickName}</td>
-                  </Link>
-                  <td>
-                    {favoriteMovies.length > 1
-                      ? `${favoriteMovies.length} favorite Movies`
-                      : `${favoriteMovies.length} favorite Movie`}
-                  </td>
-                  <td>
-                    {favoriteTv.length > 1
-                      ? `${favoriteTv.length} favorite Tv Shows`
-                      : `${favoriteTv.length} favorite Tv Show`}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <span className="tableColumn">User nickName</span>
+          <span className="tableColumn">Favorite Movies</span>
+          <span className="tableColumn">Favorite Tv Shows</span>
+        </div>
+
+        {!!users.length &&
+          users.map((user) => {
+            let favoriteMovies = user.favoriteMovies.split(" ");
+            favoriteMovies.pop();
+            let favoriteTv = user.favoriteTv.split(" ");
+            favoriteTv.pop();
+            return (
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <span className="tableColumn">
+                  <Link to={`/user/profile/${user.id}`}>{user.nickName}</Link>
+                </span>
+                <span className="tableColumn">
+                  {favoriteMovies.length > 1
+                    ? `${favoriteMovies.length} `
+                    : `${favoriteMovies.length} `}
+                </span>
+                <span className="tableColumn">
+                  {favoriteTv.length > 1
+                    ? `${favoriteTv.length} `
+                    : `${favoriteTv.length}`}
+                </span>
+              </div>
+            );
+          })}
+
         {loading && <Spinner />}
       </div>
     </>

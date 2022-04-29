@@ -18,8 +18,9 @@ const App = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   useEffect(() => {
-    dispatch(persistUser()).then((user) => {});
-    console.log(`user es`, user);
+    dispatch(persistUser()).then((user) => {
+      console.log(`user es`, user);
+    });
   }, []);
 
   return (
@@ -62,10 +63,8 @@ const App = () => {
                   ></Route>
                 </>
               ) : null}
-              <Route
-               path="/user/profile"
-               element={<Profile />}
-             ></Route>
+              <Route path="/user/profile" element={<Profile />}></Route>
+              <Route path="/user/profile/:id" element={<Profile />}></Route>
             </Routes>
           </div>
         </div>

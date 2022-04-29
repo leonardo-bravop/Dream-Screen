@@ -43,20 +43,9 @@ const Profile = () => {
     }
     else {
       console.log(`LOL`);
-      if (user.favoriteMovies) {
-        let favMovies = user.favoriteMovies.split(" ");
-        favMovies.pop();
-        console.log(`fav movies es`, favMovies);
-        setFavoriteMovies(favMovies);
-      }
-      if (user.favoriteTv) {
-        let favTv = user.favoriteTv.split(" ");
-        favTv.pop();
-        setFavoriteTv(favTv);
-      }
       setUserData(user)
     }
-  }, []);
+  }, [id]);
 
   return (
     <div className="user-content">
