@@ -147,7 +147,7 @@ const Item = () => {
 
               <h3>Overview</h3>
               <div className="overview">
-                <p>{data.overview}</p>
+                <p>{data.overview  || "There is no overview for this item"}</p>
               </div>
             </div>
           </section>

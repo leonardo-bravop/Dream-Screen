@@ -11,22 +11,27 @@ const Navbar = () => {
   const opened = { value: isOpen, setValue: setIsOpen };
   const [selected, setSelected] = useState("");
   let selectedObj = { value: selected, setValue: setSelected };
-  
+
   const matchState = useMatch("/*");
+  const matchItem = useMatch("/media/:mediaType/:state");
 
   const state = matchState.pathname.split("/");
 
-  useEffect(()=>{
-    if (state[2]==="tv") setSelected("tv-shows")
-    else if (state[2]==="movie") setSelected("movies")
-    else if (state[1]==="user") setSelected("users")
-    if (state[2]==="my-favorites") setSelected("my-favorites")
+  useEffect(() => {
+    if (state[2] === "tv") setSelected("tv-shows");
+    else if (state[2] === "movie") setSelected("movies");
+    else if (state[1] === "user") setSelected("users");
+    if (state[2] === "my-favorites") setSelected("my-favorites");
+  }, []);
 
-  }, [])
+  useEffect(() => {
+    console.log(`scrolldirection es`, scrollDirection);
+    console.log(`state es`, state);
+    console.log(`matchitem es`, matchItem);
+  }, []);
 
-console.log(`state es`, state);
   //Navbar hide functionality
-  const { y, x, scrollDirection } = useScroll();
+  const { y, x, scrollDirection, setScrollDirection } = useScroll();
 
   const styles = {
     active: {
@@ -41,11 +46,17 @@ console.log(`state es`, state);
   };
   //
 
- 
   return (
     <nav
       className="navbar"
-      style={scrollDirection? (scrollDirection === "down" ? styles.active : styles.hidden) : null}
+      style={
+        matchItem &&
+         scrollDirection
+          ? scrollDirection === "down"
+            ? styles.active
+            : styles.hidden
+          : null
+      }
     >
       <div className="logoDiv">
         <Link
@@ -58,7 +69,11 @@ console.log(`state es`, state);
         </Link>
 
         <div className="normal-navigation">
-          <NavbarLinks opened={opened} selected={selectedObj} />
+          <NavbarLinks
+            opened={opened}
+            selected={selectedObj}
+            setScrollDirection={setScrollDirection}
+          />
         </div>
         <div
           style={{
@@ -90,7 +105,11 @@ console.log(`state es`, state);
       </div>
       {isOpen && (
         <div className="mobile-navigation" style={{ height: "100vh" }}>
-          <NavbarLinks opened={opened} selected={selectedObj} />
+          <NavbarLinks
+            opened={opened}
+            selected={selectedObj}
+            setScrollDirection={setScrollDirection}
+          />
         </div>
       )}
     </nav>

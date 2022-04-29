@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { sendLogoutRequest } from "../../state/user";
 import "./Navbar.css";
 
-const NavbarLinks = ({ opened, selected }) => {
+const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
   const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
@@ -26,6 +26,7 @@ const NavbarLinks = ({ opened, selected }) => {
             console.log(`soy movies button`);
             opened.setValue(false);
             selected.setValue("movies")
+            setScrollDirection("")
           }}
         >
           {selected.value==="movies"? <button className="selectedMediaNavButton">Movies</button> :  <button className="mediaNavButton">Movies</button>}

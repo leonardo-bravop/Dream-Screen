@@ -72,6 +72,7 @@
 .movieContent {
   display: flex;
   flex-direction: column;
+  justify-self: flex-start;
   padding: 30px 30px;
   margin: auto;
   height: auto;
@@ -198,6 +199,7 @@
 .overview {
   letter-spacing: 0.8px;
   line-height: 1.5;
+  /* min-width: 40vw; */
 }
 
 .adding-fav-loader {
