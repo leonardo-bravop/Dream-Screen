@@ -58,7 +58,7 @@ const App = () => {
               {user.id ? (
                 <>
                   <Route
-                    path="/user/my-favorites"
+                    path="/user/my-favorites/*"
                     element={<UserFavorites />}
                   ></Route>
                 </>
