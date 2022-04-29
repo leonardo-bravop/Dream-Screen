@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { BsTrash } from "react-icons/bs";
 import { RemoveFromFavorites } from "../state/user";
+import "./FavoritesCard.css"
 
 const FavoritesCard = ({ movieId, mediaType }) => {
   const dispatch = useDispatch();
@@ -34,8 +35,9 @@ const FavoritesCard = ({ movieId, mediaType }) => {
       .then((data) => {
         setData(data);
       })
-      .catch(() => {
-        navigate("/404");
+      .catch((error) => {
+        console.log(error);
+        // navigate("/404");
       });
   }, [movieId]);
 
@@ -44,20 +46,14 @@ const FavoritesCard = ({ movieId, mediaType }) => {
       <button className="trashDiv" onClick={onRemoveClick}>
         <BsTrash />
       </button>
-      <Link to={`/${mediaType}/${data.id}`}>
+      <Link to={`/media/${mediaType}/id/${data.id}`}>
         <div className="card-image">
-          <figure className="image">
+          <figure>
             <img
-              style={{
-                objectFit: "cover",
-                borderRadius: "4px 4px 0 0",
-                maxWidth: "92px",
-                backgroundColor: "white",
-                minHeight: "129px",
-              }}
+             className="image"
               src={
                 data.poster_path
-                  ? `https://image.tmdb.org/t/p/w92/${data.poster_path}`
+                  ? `https://image.tmdb.org/t/p/w200/${data.poster_path}`
                   : `/placeholder-image.png`
               }
               alt="Placeholder image"

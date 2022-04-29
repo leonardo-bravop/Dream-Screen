@@ -130,9 +130,9 @@ function onWheel(apiObj, ev) {
       return;
   }
   if (ev.deltaY < 0) {
-      apiObj.scrollNext();
+      apiObj.scrollPrev();
   }
   else if (ev.deltaY > 0) {
-      apiObj.scrollPrev();
+      apiObj.scrollNext();
   }
 }

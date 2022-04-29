@@ -3,7 +3,7 @@ import Card from "../commons/Card";
 
 const ResponsiveGrid = ({ media }) => {
   return (
-    <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center", width: "60%"}}>
+    <>
       {media.map((element) => (
         <Card
           data={element}
@@ -12,7 +12,7 @@ const ResponsiveGrid = ({ media }) => {
           key={element.id}
         />
       ))}
-    </div>
+    </>
   );
 };
 

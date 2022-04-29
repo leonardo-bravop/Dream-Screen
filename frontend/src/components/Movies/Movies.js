@@ -1,11 +1,36 @@
-import { useState } from "react";
+import { Route, Routes, useMatch, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 import MediaRow from "../MediaRow";
 import { Link } from "react-router-dom";
 import "./Movies.css";
 
 const Movies = () => {
-  const [selected, setSelected] = useState("popular");
+  const navigate=useNavigate()
+  const [selected, setSelected] = useState("");
   const statesArray = ["popular", "now_playing", "upcoming", "top_rated"];
+
+  const matchState = useMatch("/media/movie/:state");
+
+  const state = matchState?.params.state;
+
+  useEffect(() => {
+    setSelected(state);
+    if (
+      state !== "popular" &&
+      state !== "now_playing" &&
+      state !== "upcoming" &&
+      state !== "top_rated"
+    ) {
+      navigate("popular")
+    }
+  }, [state]);
+
+  // useEffect(() => {
+  //   console.log("state es", state);
+   
+  //   console.log("render de nuevo");
+  // }, [state]);
+
   return (
     <>
       <div className="movies-tagnav">
@@ -25,7 +50,26 @@ const Movies = () => {
           );
         })}
       </div>
-      <MediaRow mediaType={"movie"} state={selected} />
+      <Routes>
+        <Route
+          path="popular"
+          element={<MediaRow mediaType={"movie"} state={"popular"} />}
+        ></Route>
+        <Route
+          path="now_playing"
+          element={<MediaRow mediaType={"movie"} state={"now_playing"} />}
+        ></Route>
+
+        <Route
+          path="upcoming"
+          element={<MediaRow mediaType={"movie"} state={"upcoming"} />}
+        ></Route>
+
+        <Route
+          path="top_rated"
+          element={<MediaRow mediaType={"movie"} state={"top_rated"} />}
+        ></Route>
+      </Routes>{" "}
     </>
   );
 };

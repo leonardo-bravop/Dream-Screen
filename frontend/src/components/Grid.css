@@ -9,7 +9,7 @@
   .grid {
       display: flex;
       align-items: center;
-    width: 70%;
+    width: 90%;
     flex-wrap: wrap;
     justify-content: center;
   }

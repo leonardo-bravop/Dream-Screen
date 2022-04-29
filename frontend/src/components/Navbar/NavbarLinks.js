@@ -57,7 +57,7 @@ const NavbarLinks = ({ opened }) => {
         {user.id ? (
           <>
             <Link
-              to={`/user/profile/${user.id}`}
+              to={`/user/profile`}
               onClick={() => {
                 opened.setValue(false);
               }}

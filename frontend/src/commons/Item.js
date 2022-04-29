@@ -54,53 +54,35 @@ const Item = () => {
 
   return (
     <>
-      <div className="banner-div">
-        <img
-          src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`}
-          className="banner-img"
-        />
-      </div>
-      <div className="banner-div2"></div>
       {/* <div className="content-div"> */}
       <div className="movieContent">
-        {loading && (
-          <div>
-            <h3>Adding to favorites</h3>
-            <Spinner />
-          </div>
-        )}
-        <div id="itemPicture">
-          {user.id &&
-          (user.favoriteMovies.includes(id) ||
-            user?.favoriteTv.includes(id)) ? (
-            <button
-              className="heartDivItem"
-              o
-              // onClick={onFavoriteClick}
-            >
-              <AiFillHeart />
-            </button>
-          ) : (
-            <button className="heartDivItem" onClick={onFavoriteClick}>
-              <AiOutlineHeart />
-            </button>
-          )}
+        <div className="banner-div">
           <img
-            style={{
-              width: "300px",
-              height: "450px",
-              objectFit: "cover",
-              borderRadius: "4px",
-            }}
+            src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`}
+            className="banner-img"
+          />
+          {/* <div className="banner-div2"></div> */}
+        </div>
+
+        <div id="itemPicture">
+          {loading && (
+            <div className="adding-fav-loader">
+              <h3>Adding to favorites</h3>
+              <Spinner />
+            </div>
+          )}
+
+          <img
+            className="movie-pic"
             src={
               data.poster_path
-                ? `https://image.tmdb.org/t/p/w300/${data.poster_path}`
+                ? `https://image.tmdb.org/t/p/w500/${data.poster_path}`
                 : "/placeholder-image.png"
             }
           ></img>
         </div>
 
-        <div className="header_poster_wrapper" style={{ margin: "20px" }}>
+        <div className="media-wrapper">
           <section className="itemDescription">
             <div className="title">
               <h2>{data.title || data.name}</h2>
@@ -124,22 +106,40 @@ const Item = () => {
                 ) : null}
               </div>
             </div>
-            <div
-              style={{
-                border: `4px solid hsl(${
-                  14 * parseInt(data.vote_average)
-                },100%,50%)`,
-                width: "60px",
-                margin: "10px",
-                height: "60px",
-                display: "flex",
-                justifyContent: "center",
-                borderRadius: "100%",
-                backgroundColor: "rgba(0,0,0,0.2)"
-              }}
-            >
-              <div className="score-div">{data.vote_average}</div>
+            <div className="score-div">
+              <div
+                style={{
+                  border: `4px solid hsl(${
+                    14 * parseInt(data.vote_average)
+                  },100%,50%)`,
+                  width: "60px",
+                  margin: "10px",
+                  height: "60px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: "100%",
+                  backgroundColor: "rgba(0,0,0,0.2)",
+                }}
+              >
+                <div>{data.vote_average}</div>
+              </div>
             </div>
+            {user.id &&
+            (user.favoriteMovies.includes(id) ||
+              user?.favoriteTv.includes(id)) ? (
+              <button
+                className="heartDivItem"
+                o
+                // onClick={onFavoriteClick}
+              >
+                <AiFillHeart />
+              </button>
+            ) : (
+              <button className="heartDivItem" onClick={onFavoriteClick}>
+                <AiOutlineHeart />
+              </button>
+            )}
             {/* <ul className="actions">User score: {data.vote_average}</ul> */}
 
             <div className="header_info">

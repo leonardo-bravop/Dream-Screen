@@ -1,10 +1,23 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Route, Routes, useMatch, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 import MediaRow from "../MediaRow";
+import { Link } from "react-router-dom";
+import "../Movies/Movies.css";
 
 const TvShows = () => {
-  const [selected, setSelected] = useState("popular");
+  const navigate = useNavigate();
+  const [selected, setSelected] = useState("");
   const statesArray = ["popular", "top_rated"];
+  const matchState = useMatch("/media/tv/:state");
+
+  const state = matchState?.params.state;
+
+  useEffect(() => {
+    setSelected(state);
+    if (state !== "popular" && state !== "top_rated") {
+      navigate("popular");
+    }
+  }, [state]);
 
   return (
     <>
@@ -25,7 +38,16 @@ const TvShows = () => {
           );
         })}
       </div>
-      <MediaRow mediaType={"tv"} state={selected} />
+      <Routes>
+        <Route
+          path="popular"
+          element={<MediaRow mediaType={"tv"} state={"popular"} />}
+        ></Route>
+        <Route
+          path="top_rated"
+          element={<MediaRow mediaType={"tv"} state={"top_rated"} />}
+        ></Route>
+      </Routes>{" "}
     </>
   );
 };

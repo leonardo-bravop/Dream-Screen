@@ -1,0 +1,67 @@
+.user-content {
+  width: 100%;
+  background-color: rgb(146, 146, 146);
+  height: 800px;
+  margin-top: -60px;
+}
+
+.user-banner-div {
+  width: 100%;
+  height: 250px;
+  background-color: rgb(185, 185, 185);
+}
+
+.user-banner-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.user-picture {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 100%;
+  margin-top: -75px;
+}
+
+.user-header-div {
+  text-align: center;
+  margin-top: -150px;
+}
+
+@media (min-width: 600px) {
+  .user-picture {
+    height: 200px;
+    width: 200px;
+  }
+  .user-banner-div {
+    height: 300px;
+  }
+  .user-header-div {
+    margin-top: -200px;
+  }
+}
+
+.user-nickname {
+  margin-top: 20px;
+  display: block;
+  font-size: 2em;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  width: 100%;
+}
+
+.favoriteMedia {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  align-items: center;
+}
+
+.cards-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+justify-content: center;}

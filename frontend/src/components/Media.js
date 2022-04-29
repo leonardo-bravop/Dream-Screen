@@ -6,7 +6,7 @@ import TvShows from "./TvShows/TvShows";
 const Media = () => {
   return (
     <Routes>
-      <Route path="/movie/*" element={<Movies/>}></Route>
+       <Route path="/movie/*" element={<Movies/>}></Route>
       <Route path="/tv/*" element={<TvShows/>}></Route>
       <Route path="/:media/id/:id" element={<Item />} />
     </Routes>

@@ -6,19 +6,20 @@ import "./App.css";
 import SearchForm from "./components/SearchForm/SearchForm";
 import Register from "./components/Register/Register";
 import Login from "./components/Login";
-import Item from "./commons/Item";
 import SearchListGrid from "./commons/SearchListGrid";
 import { persistUser } from "./state/user";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Users from "./components/Users";
 import UserFavorites from "./components/UserFavorites";
+import Profile from "./components/Profile.js/Profile";
 
 const App = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(persistUser()).then((user) => {});
+    console.log(`user es`, user);
   }, []);
 
   return (
@@ -61,6 +62,10 @@ const App = () => {
                   ></Route>
                 </>
               ) : null}
+              <Route
+               path="/user/profile"
+               element={<Profile />}
+             ></Route>
             </Routes>
           </div>
         </div>

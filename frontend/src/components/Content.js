@@ -44,12 +44,12 @@ const Content = () => {
       <Route
         path=""
         element={
-          <>
+          <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
             <div>
               <h2>Trending today:</h2>
             </div>
             <Row media={popularMedia} />
-            {/* <Grid media={popularMedia.slice(0, 6)} /> */}
+            <Grid media={popularMedia.slice(0, 6)} />
             {/* <div>
               <h2>Now playing:</h2>
             </div> */}
@@ -73,7 +73,7 @@ const Content = () => {
               <h2>Join Dream Screen!</h2>
               <p>Create a profile and save favorite movies and tv shows</p>
             </div>
-          </>
+          </div>
         }
       />
     </Routes>
