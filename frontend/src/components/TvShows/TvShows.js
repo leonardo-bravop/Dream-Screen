@@ -14,9 +14,9 @@ const TvShows = () => {
 
   useEffect(() => {
     setSelected(state);
-    if (state !== "popular" && state !== "top_rated") {
-      navigate("popular");
-    }
+  //   if (state !== "popular" && state !== "top_rated") {
+  //     navigate("popular");
+  //   }
   }, [state]);
 
   return (

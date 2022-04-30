@@ -45,7 +45,7 @@ const SearchListGrid = () => {
         margin: "20px 10%"
       }}
     >
-      {loading && <Spinner />}
+      {loading && <div style={{position: "absolute", marginTop: "20px"}}><Spinner /></div>}
       {anotherMedia.map((media) => (
         <div className="cardLinkDiv" key={media.id}>
           <Card data={media} title={media.title || media.name} />

@@ -21,7 +21,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
     <>
       <div className="mediaNavDiv">
         <Link
-          to="/media/movie"
+          to="/media/movie/popular"
           onClick={() => {
             console.log(`soy movies button`);
             opened.setValue(false);
@@ -32,7 +32,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
           {selected.value==="movies"? <button className="selectedMediaNavButton">Movies</button> :  <button className="mediaNavButton">Movies</button>}
         </Link>
         <Link
-          to="/media/tv"
+          to="/media/tv/popular"
           onClick={() => {
             opened.setValue(false);
             selected.setValue("tv-shows")

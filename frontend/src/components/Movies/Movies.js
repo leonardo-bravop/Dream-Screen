@@ -13,16 +13,19 @@ const Movies = () => {
 
   const state = matchState?.params.state;
 
+  const matchMovie = useMatch("/media/movie")
+
   useEffect(() => {
     setSelected(state);
-    if (
-      state !== "popular" &&
-      state !== "now_playing" &&
-      state !== "upcoming" &&
-      state !== "top_rated"
-    ) {
-      navigate("popular")
-    }
+    // if (
+    //   state !== "popular" &&
+    //   state !== "now_playing" &&
+    //   state !== "upcoming" &&
+    //   state !== "top_rated" &&
+    //   matchMovie
+    // ) {
+    //   navigate("popular")
+    // }
   }, [state]);
 
   // useEffect(() => {
