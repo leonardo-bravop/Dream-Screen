@@ -62,7 +62,7 @@ const Content = () => {
             {/* <Grid media={comingMovies.slice(0, 6)} /> */}
             <div
               style={{
-                backgroundColor: "#1e1eac",
+                backgroundColor: "#02175a",
                 width: "100%",
                 margin: "40px 0",
                 padding: "20px 0",

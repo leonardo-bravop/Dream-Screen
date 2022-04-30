@@ -1,16 +1,70 @@
-.tableColumn {
-  margin: 20px;
-  min-width: 110px;
-  text-align: center;
+.users-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
 }
 
-.userRow {
+.userRowDiv > a {
+  text-decoration: none;
+  color: black;
+  margin: auto 0;
   display: flex;
   justify-content: center;
-  box-shadow: 3px 3px 8px 2px rgba(205, 205, 205, 0.4);
+}
+
+#titlesRowDiv {
+  background-color: rgb(246, 246, 246);
+  box-shadow: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.userRowDiv {
+  display: flex;
+  /* tiene flex */
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 30px; */
+}
+
+.userRow,
+.titleRow {
+  display: flex;
+  justify-content: center;
   margin-bottom: 20px;
   width: 570px;
   border-radius: 8px;
+}
+
+.titleRow {
+  margin-bottom: 0px;
+}
+
+.userRow {
+  box-shadow: 3px 3px 8px 2px rgba(205, 205, 205, 0.4);
+  transition: all 0.15s ease-in-out;
+}
+
+.userRow:hover {
+  scale: 1.05;
+}
+
+.columnTitle {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: 500;
+  align-self: center;
+}
+
+.tableColumn {
+  margin: 20px;
+  /* min-width: 110px; */
+  text-align: center;
+  flex: 1;
 }
 
 @media (max-width: 600px) {
@@ -19,11 +73,21 @@
     display: flex;
     flex-direction: column;
     margin: 20px 10px;
-    width: 80px;
+    /* min-width: 50%; */
+  }
+
+  .tableColumn {
+    flex: 1;
   }
 
   .userRow {
+    width: 80vw;
+  }
+  .titleRow {
     /* padding: 0 10px; */
     width: 80%;
   }
+  /* .tableColumn {
+    width: 100px;
+  } */
 }

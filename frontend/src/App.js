@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Users from "./components/Users";
 import UserFavorites from "./components/UserFavorites";
 import Profile from "./components/Profile.js/Profile";
+import Invitation from "./Invitation";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,9 @@ const App = () => {
               />
               <Route
                 path="/user/search"
-                element={<p>Search any user on Dream Screen!</p>}
+                element={
+                  <Invitation/>
+                }
               ></Route>
               <Route
                 path="/user/search/:searchValue"

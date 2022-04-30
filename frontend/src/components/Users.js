@@ -25,13 +25,16 @@ const Users = () => {
 
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column", alignItems:"center" }}>
-        <div className="userRow">
-          <div className="tableColumn">User nickName</div>
-          <span className="tableColumn">Favorite Movies</span>
-          <span className="tableColumn">Favorite Tv Shows</span>
+      <div
+        className="users-wrapper"
+      >
+        <div id="titlesRowDiv">
+          <div className="titleRow">
+            <div className="tableColumn columnTitle">User nickName</div>
+            <span className="tableColumn columnTitle">Favorite Movies</span>
+            <span className="tableColumn columnTitle">Favorite Tv Shows</span>
+          </div>
         </div>
-
         {!!users.length &&
           users.map((user) => {
             let favoriteMovies = user.favoriteMovies.split(" ");
@@ -39,20 +42,23 @@ const Users = () => {
             let favoriteTv = user.favoriteTv.split(" ");
             favoriteTv.pop();
             return (
-              <div className="userRow">
-                <span className="tableColumn">
-                  <Link to={`/user/profile/${user.id}`}>{user.nickName}</Link>
-                </span>
-                <span className="tableColumn">
-                  {favoriteMovies.length > 1
-                    ? `${favoriteMovies.length} `
-                    : `${favoriteMovies.length} `}
-                </span>
-                <span className="tableColumn">
-                  {favoriteTv.length > 1
-                    ? `${favoriteTv.length} `
-                    : `${favoriteTv.length}`}
-                </span>
+              <div className="userRowDiv">
+              
+              <Link to={`/user/profile/${user.id}`}>
+                <div className="userRow">
+                  <span className="tableColumn">{user.nickName}</span>
+                  <span className="tableColumn">
+                    {favoriteMovies.length > 1
+                      ? `${favoriteMovies.length} `
+                      : `${favoriteMovies.length} `}
+                  </span>
+                  <span className="tableColumn">
+                    {favoriteTv.length > 1
+                      ? `${favoriteTv.length} `
+                      : `${favoriteTv.length}`}
+                  </span>
+                </div>
+              </Link>
               </div>
             );
           })}
