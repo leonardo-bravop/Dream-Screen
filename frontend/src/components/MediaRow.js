@@ -24,7 +24,7 @@ const MediaRow = ({ mediaType, state }) => {
   }, [state]);
 
   return (
-    <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center", padding: "0 15%"}}>
+    <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center", padding: "0 15%", marginTop: "10px"}}>
       {loading && <div style={{position: "absolute", marginTop: "20px"}}><Spinner /></div>}
       {!loading && <ResponsiveGrid media={media} />}
 

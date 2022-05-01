@@ -15,6 +15,7 @@ const Users = () => {
     setUsers([]);
     axios.get(`/api/users/search/${searchValue}`).then((res) => {
       console.log(`res es`, res);
+      if(!res.data) 
       setUsers(res.data);
       setLoading(false);
       console.log(`setee a falses`);
@@ -30,9 +31,9 @@ const Users = () => {
       >
         <div id="titlesRowDiv">
           <div className="titleRow">
-            <div className="tableColumn columnTitle">User nickName</div>
-            <span className="tableColumn columnTitle">Favorite Movies</span>
-            <span className="tableColumn columnTitle">Favorite Tv Shows</span>
+            <div className="tableColumn columnTitle">NICKNAME</div>
+            <span className="tableColumn columnTitle">FAVORITE MOVIES</span>
+            <span className="tableColumn columnTitle">FAVORITE TV SHOWS</span>
           </div>
         </div>
         {!!users.length &&

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./Movies.css";
 
 const Movies = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [selected, setSelected] = useState("");
   const statesArray = ["popular", "now_playing", "upcoming", "top_rated"];
 
@@ -13,7 +13,7 @@ const Movies = () => {
 
   const state = matchState?.params.state;
 
-  const matchMovie = useMatch("/media/movie")
+  const matchMovie = useMatch("/media/movie");
 
   useEffect(() => {
     setSelected(state);
@@ -30,7 +30,7 @@ const Movies = () => {
 
   // useEffect(() => {
   //   console.log("state es", state);
-   
+
   //   console.log("render de nuevo");
   // }, [state]);
 
@@ -41,13 +41,21 @@ const Movies = () => {
           return (
             <Link to={state} onClick={() => setSelected(state)}>
               <div className="tagnav-div">
-                <button className="tagnav-button">
+                <button
+                  className={`tagnav-button ${
+                    selected === state ? "active-tagnav" : null
+                  }`}
+                >
                   {state[0].toUpperCase() +
-                    state.slice(1, state.length).split("_").join(" ")}
+                    state
+                      .slice(1, state.length)
+                      .split("_")
+                      .join(" ")
+                      .toUpperCase()}
                 </button>
-                {selected === state && (
+                {/* {selected === state && (
                   <img src="/line.svg" className="tagnav-line" />
-                )}
+                )} */}
               </div>
             </Link>
           );

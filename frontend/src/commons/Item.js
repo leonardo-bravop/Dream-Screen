@@ -114,10 +114,15 @@ const Item = () => {
         <div className="media-wrapper">
           <section className="itemDescription">
             <div className="title">
-              <h2>{data.title || data.name}</h2>
+              <h2>
+                {data.title || data.name}
+                {data.release_date
+                  ? ` (${data.release_date.slice(0, 4)})`
+                  : null}
+              </h2>
 
               <div className="facts">
-                <span className="genres" style={{ display: "flex" }}>
+                <div className="genres" style={{ display: "flex" }}>
                   {data.genres
                     ? data.genres.map((genre) => {
                         return (
@@ -129,9 +134,9 @@ const Item = () => {
                         );
                       })
                     : []}
-                </span>
+                </div>
                 {data.runtime ? (
-                  <span className="runtime"> {data.runtime} minutes</span>
+                  <div className="runtime"> {data.runtime} minutes</div>
                 ) : null}
               </div>
             </div>
@@ -144,7 +149,7 @@ const Item = () => {
                       : `gray`
                   }`,
                   width: "60px",
-                  margin: "10px",
+                  margin: "10px 10px 10px 0",
                   height: "60px",
                   display: "flex",
                   justifyContent: "center",

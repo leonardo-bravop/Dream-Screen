@@ -1,6 +1,7 @@
 .movies-tagnav {
   display: flex;
   justify-content: center;
+
   margin: 0 20px;
   margin-top: 20px;
   width: 100%;
@@ -9,7 +10,7 @@
   background-color: rgb(246, 246, 246);
   box-shadow: 3px 3px 8px 2px rgba(157, 156, 156, 0.3);
   border-radius: 8px;
-  min-height: 80px;
+  min-height: 60px;
 }
 
 .movies-tagnav > a {
@@ -40,11 +41,12 @@
 .tagnav-button {
   background-color: transparent;
   font-size: 1.2em;
+  font-weight: 500;
   height: 50px;
-  width: 160px;
-  padding: 0px 20px;
+  width: 180px;
+  padding: 0;
   margin: 0 10px;
-  padding-top: 10px;
+  border-radius: 8px;
   border-style: none;
   cursor: pointer;
   /* color: white */
@@ -53,22 +55,32 @@
 }
 
 .tagnav-button:hover {
-  /* background-color: transparent; */
-  font-weight: 600;
-  color: blue;
-  font-size: 1.2em;
-  padding: 0px 20px;
+  background-color: rgb(207, 207, 207);
+  /* font-weight: 600; */
+  color: rgb(0, 0, 0);
+  /* font-size: 1.2em; */
+  /* padding: 0px 20px; */
   /* border: none; */
+}
+
+.active-tagnav {
+  background-color: rgb(207, 207, 207);
 }
 
 .tagnav-div {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px 0;
 }
 
 .tagnav-line {
+  position: absolute;
   width: 30px;
-  margin-top: -20px;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  /* margin-bottom: 20px; */
+}
+
+.tagnav-div > svg:hover {
+  color: blue;
 }
