@@ -7,6 +7,7 @@ import Spinner from "../components/Spinner";
 const SearchListGrid = () => {
   const navigate = useNavigate();
   const [anotherMedia, setAnotherMedia] = useState([]);
+  const [noResults, setNoResults] = useState("");
   const tmdbAPI = "https://api.themoviedb.org/3";
   const key = "46b1d60d45fa9282f81dabe7e845515e";
   const matchGeneral = useMatch("/");
@@ -21,6 +22,7 @@ const SearchListGrid = () => {
 
   useEffect(() => {
     setAnotherMedia([]);
+    setNoResults("");
     axios
       .get(
         `${tmdbAPI}/search/${mediaType}?api_key=${key}&language=en-US&query=${searchValue}`
@@ -29,6 +31,7 @@ const SearchListGrid = () => {
       .then((data) => {
         setAnotherMedia(data.results);
         setLoading(false);
+        setNoResults("No se encontraron resultados");
       })
       .catch(() => {
         navigate("/404");
@@ -42,15 +45,21 @@ const SearchListGrid = () => {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
-        margin: "20px 10%"
+        margin: "20px 10%",
       }}
     >
-      {loading && <div style={{position: "absolute", marginTop: "20px"}}><Spinner /></div>}
-      {anotherMedia.map((media) => (
-        <div className="cardLinkDiv" key={media.id}>
-          <Card data={media} title={media.title || media.name} />
+      {loading && (
+        <div style={{ position: "absolute", marginTop: "20px" }}>
+          <Spinner />
         </div>
-      ))}
+      )}
+      {anotherMedia.length
+        ? anotherMedia.map((media) => (
+            <div className="cardLinkDiv" key={media.id}>
+              <Card data={media} title={media.title || media.name} />
+            </div>
+          ))
+        : noResults}
     </div>
   );
 };
