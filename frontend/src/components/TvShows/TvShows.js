@@ -14,9 +14,9 @@ const TvShows = () => {
 
   useEffect(() => {
     setSelected(state);
-  //   if (state !== "popular" && state !== "top_rated") {
-  //     navigate("popular");
-  //   }
+    //   if (state !== "popular" && state !== "top_rated") {
+    //     navigate("popular");
+    //   }
   }, [state]);
 
   return (
@@ -26,9 +26,17 @@ const TvShows = () => {
           return (
             <Link to={state} onClick={() => setSelected(state)}>
               <div className="tagnav-div">
-                <button className="tagnav-button">
+                <button
+                  className={`tagnav-button ${
+                    selected === state ? "active-tagnav" : null
+                  }`}
+                >
                   {state[0].toUpperCase() +
-                    state.slice(1, state.length).split("_").join(" ").toUpperCase()}
+                    state
+                      .slice(1, state.length)
+                      .split("_")
+                      .join(" ")
+                      .toUpperCase()}
                 </button>
                 {/* {selected === state && (
                   <img src="/line.svg" className="tagnav-line" />

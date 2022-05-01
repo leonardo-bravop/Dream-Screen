@@ -4,7 +4,7 @@ import { sendSignUpRequest, sendLoginRequest } from "../../state/user";
 import { useNavigate } from "react-router";
 import Spinner from "../Spinner";
 import { useState } from "react";
-import "./Register.css"
+import "./Register.css";
 
 const Register = () => {
   const email = useInput();
@@ -31,10 +31,10 @@ const Register = () => {
           dispatch(
             sendLoginRequest({ email: email.value, password: password.value })
           ).then(() => {
-            setLoading(false)
+            setLoading(false);
             navigate("/");
           });
-          setLoading(true)
+          setLoading(true);
         } else {
           alert(`User already exists. Please use another email.`);
         }
@@ -46,20 +46,47 @@ const Register = () => {
   return (
     <>
       {!user.id ? (
-        <div className="flexColumnAligned userForm" style={{ marginTop: "50px" }}>
-          <img style={{ width: "100px" }} src="/register.png" />
+        <div
+          className="flexColumnAligned userForm"
+          style={{ marginTop: "50px" }}
+        >
+          <img
+            style={{ width: "100px", marginTop: "20px" }}
+            src="/register.png"
+          />
           <span
             style={{ fontSize: "1.5em", fontWeight: "bold", marginTop: "20px" }}
           >
             Create your account
           </span>
           <form className="flexColumnAligned" onSubmit={handleSubmit}>
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" {...email}></input>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" {...password}></input>
-            <label htmlFor="nickname">Nickname</label>
-            <input type="text" name="nickname" {...nickname}></input>
+            <label htmlFor="email" className="inputLabel">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              {...email}
+              className="inputText"
+            ></input>
+            <label htmlFor="password" className="inputLabel">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              {...password}
+              className="inputText"
+            ></input>
+            <label htmlFor="nickname" className="inputLabel">
+              Nickname
+            </label>
+            <input
+              type="text"
+              name="nickname"
+              {...nickname}
+              className="inputText"
+            ></input>
             <button type="submit" className="navButton" id="registerButton">
               Sign up
             </button>

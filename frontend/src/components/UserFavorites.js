@@ -34,19 +34,23 @@ const UserFavorites = () => {
 
   return (
     <div>
-      <h2 style={{textAlign: "center"}}>Favorites</h2>
+      <h2 style={{ textAlign: "center" }}>Favorites</h2>
       <div className="movies-tagnav">
         {statesArray.map((state) => {
           return (
             <Link to={state} onClick={() => setSelected(state)}>
               <div className="tagnav-div">
-                <button className="tagnav-button">
+                <button
+                  className={`tagnav-button ${
+                    selected === state ? "active-tagnav" : null
+                  }`}
+                >
                   {state[0].toUpperCase() +
                     state.slice(1, state.length).split("_").join(" ")}
                 </button>
-                {selected === state && (
+                {/* {selected === state && (
                   <img src="/line.svg" className="tagnav-line" />
-                )}
+                )} */}
               </div>
             </Link>
           );
@@ -58,6 +62,7 @@ const UserFavorites = () => {
           flexWrap: "wrap",
           justifyContent: "center",
           padding: "0 15%",
+          marginTop: "20px"
         }}
       >
         <Routes>
