@@ -2,8 +2,10 @@ import Card from "../commons/Card";
 import "./Row.css";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import { useContext, useEffect, useState } from "react";
-import { BsArrowRightCircle, BsLock } from "react-icons/bs";
-import { BsArrowLeftCircle } from "react-icons/bs";
+import {
+  IoIosArrowDropleftCircle,
+  IoIosArrowDroprightCircle,
+} from "react-icons/io";
 
 const Row = ({ media }) => {
   const [selected, setSelected] = useState([]);
@@ -24,20 +26,24 @@ const Row = ({ media }) => {
     };
 
   return (
-      <div className="slider">
-        <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow} onWheel={onWheel}>
-          {media.map((element) => (
-            <Card
-              data={element}
-              itemId={element.id} // NOTE: itemId is required for track items
-              title={element.name || element.title}
-              key={element.id}
-              onClick={handleClick(element.id)}
-              selected={isItemSelected(element.id)}
-            />
-          ))}
-        </ScrollMenu>
-      </div>
+    <div className="slider">
+      <ScrollMenu
+        LeftArrow={LeftArrow}
+        RightArrow={RightArrow}
+        onWheel={onWheel}
+      >
+        {media.map((element) => (
+          <Card
+            data={element}
+            itemId={element.id} // NOTE: itemId is required for track items
+            title={element.name || element.title}
+            key={element.id}
+            onClick={handleClick(element.id)}
+            selected={isItemSelected(element.id)}
+          />
+        ))}
+      </ScrollMenu>
+    </div>
   );
 };
 
@@ -69,7 +75,7 @@ export function LeftArrow() {
           cursor: disabled ? "default" : "pointer",
         }}
       >
-        <BsArrowLeftCircle />
+        <IoIosArrowDropleftCircle color="#02175a"/>
       </div>
     </Arrow>
   );
@@ -90,16 +96,20 @@ export function RightArrow() {
   }, [isLastItemVisible, visibleItemsWithoutSeparators]);
 
   return (
-    <Arrow disabled={disabled} onClick={() => {
-      console.log(`flecha derecha`);
-      scrollNext()}}>
+    <Arrow
+      disabled={disabled}
+      onClick={() => {
+        console.log(`flecha derecha`);
+        scrollNext();
+      }}
+    >
       <div
         className="arrow-icon"
         style={{
           cursor: disabled ? "default" : "pointer",
         }}
       >
-        <BsArrowRightCircle />
+        <IoIosArrowDroprightCircle color="#02175a"/>
       </div>
     </Arrow>
   );
@@ -121,18 +131,15 @@ function Arrow({ children, disabled, onClick }) {
   );
 }
 
-
-
 function onWheel(apiObj, ev) {
   var isThouchpad = Math.abs(ev.deltaX) !== 0 || Math.abs(ev.deltaY) < 15;
   if (isThouchpad) {
-      ev.stopPropagation();
-      return;
+    ev.stopPropagation();
+    return;
   }
   if (ev.deltaY < 0) {
-      apiObj.scrollPrev();
-  }
-  else if (ev.deltaY > 0) {
-      apiObj.scrollNext();
+    apiObj.scrollPrev();
+  } else if (ev.deltaY > 0) {
+    apiObj.scrollNext();
   }
 }

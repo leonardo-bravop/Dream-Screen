@@ -91,5 +91,18 @@ router.get("/users/search/:searchValue", (req, res) => {
   });
 });
 
+router.get("/users/:id", (req, res) => {
+  const { id } = req.params;
+  console.log(`id es`, req.params);
+  User.findByPk(id,{
+    attributes: ["id", "nickName", "favoriteMovies", "favoriteTv"]
+  }).then((user) => {
+    console.log(`user es`, user);
+    if(user.id) res.send(user);
+    else res.sendStatus(204)
+  });
+});
+
+
 
 module.exports = router;

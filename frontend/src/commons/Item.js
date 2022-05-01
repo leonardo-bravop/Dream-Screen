@@ -43,7 +43,7 @@ const Item = () => {
   const onRemoveFavClick = (event) => {
     if (!user.id) alert("Can't remove from favorites");
     else {
-      dispatch(RemoveFromFavorites({ mediaType, mediaId: data.id  })).then(
+      dispatch(RemoveFromFavorites({ mediaType, mediaId: data.id })).then(
         (res) => setLoading(false)
       );
       setLoading(true);
@@ -64,9 +64,29 @@ const Item = () => {
 
   return (
     <>
+      {/* <div className="banner-div">
+        {data.backdrop_path ? (
+          <div
+            // src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`}
+            style={{backgroundImage: ` linear-gradient(to bottom, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.7) 100%), url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path})`}}
+            className="banner-img"
+          />
+        ) : (
+          <div
+            className="banner-img"
+            style={{ backgroundColor: "rgba(246, 246, 246, 0.9)" }}
+          ></div>
+        )}
+      </div> */}
+
       {/* <div className="content-div"> */}
-      <div className="movieContent">
-        <div className="banner-div">
+      <div
+        className="movieContent"
+        style={{
+          backgroundImage: ` linear-gradient(to bottom, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.7) 100%), url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path})`,
+        }}
+      >
+        {/* <div className="banner-div">
           {data.backdrop_path ? (
             <img
               src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`}
@@ -78,7 +98,7 @@ const Item = () => {
               style={{ backgroundColor: "rgba(246, 246, 246, 0.9)" }}
             ></div>
           )}
-        </div>
+        </div> */}
 
         <div id="itemPicture">
           <img

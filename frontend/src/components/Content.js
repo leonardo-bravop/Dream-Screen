@@ -46,7 +46,7 @@ const Content = () => {
         element={
           <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
             <div>
-              <h2>Trending today:</h2>
+              <h2>TRENDING TODAY</h2>
             </div>
             <Row media={popularMedia} />
             <Grid media={popularMedia.slice(0, 6)} />

@@ -28,7 +28,7 @@ const TvShows = () => {
               <div className="tagnav-div">
                 <button className="tagnav-button">
                   {state[0].toUpperCase() +
-                    state.slice(1, state.length).split("_").join(" ")}
+                    state.slice(1, state.length).split("_").join(" ").toUpperCase()}
                 </button>
                 {selected === state && (
                   <img src="/line.svg" className="tagnav-line" />
