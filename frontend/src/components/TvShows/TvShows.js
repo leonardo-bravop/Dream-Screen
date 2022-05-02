@@ -7,7 +7,7 @@ import "../Movies/Movies.css";
 const TvShows = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState("");
-  const statesArray = ["popular", "top_rated"];
+  const statesArray = ["popular", "airing_today", "on_the_air", "top_rated"];
   const matchState = useMatch("/media/tv/:state");
 
   const state = matchState?.params.state;
@@ -38,9 +38,9 @@ const TvShows = () => {
                       .join(" ")
                       .toUpperCase()}
                 </button>
-                {/* {selected === state && (
+                {selected === state && (
                   <img src="/line.svg" className="tagnav-line" />
-                )} */}
+                )}
               </div>
             </Link>
           );
@@ -52,10 +52,18 @@ const TvShows = () => {
           element={<MediaRow mediaType={"tv"} state={"popular"} />}
         ></Route>
         <Route
+          path="airing_today"
+          element={<MediaRow mediaType={"tv"} state={"airing_today"} />}
+        ></Route>
+        <Route
+          path="on_the_air"
+          element={<MediaRow mediaType={"tv"} state={"on_the_air"} />}
+        ></Route>
+        <Route
           path="top_rated"
           element={<MediaRow mediaType={"tv"} state={"top_rated"} />}
         ></Route>
-      </Routes>{" "}
+      </Routes>
     </>
   );
 };

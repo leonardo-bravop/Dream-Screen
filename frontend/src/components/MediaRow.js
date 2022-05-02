@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ResponsiveGrid from "./ResponsiveGrid";
 import Spinner from "./Spinner";
+import "./MediaRow.css"
 
 const MediaRow = ({ mediaType, state }) => {
   const [media, setMedia] = useState([]);
@@ -16,18 +17,29 @@ const MediaRow = ({ mediaType, state }) => {
         `${tmdbAPI}/${mediaType}/${state}?api_key=${apiKey}&language=en-US&page=1`
       )
       .then((res) => {
+        console.log(`res en mediarow es`, res);
         setMedia(res.data.results);
         setLoading(false);
       });
     setLoading(true);
-    console.log(`true`);
   }, [state]);
 
   return (
-    <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center", padding: "0 15%", marginTop: "10px"}}>
-      {loading && <div style={{position: "absolute", marginTop: "20px"}}><Spinner /></div>}
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        marginTop: "10px",
+      }}
+      className="gridContainer"
+    >
+      {loading && (
+        <div style={{ position: "absolute", marginTop: "20px" }}>
+          <Spinner />
+        </div>
+      )}
       {!loading && <ResponsiveGrid media={media} />}
-
     </div>
   );
 };

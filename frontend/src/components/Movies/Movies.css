@@ -18,13 +18,9 @@
 }
 
 @media (max-width: 1000px) {
-  .movies-tagnav {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .tagnav-line {
+  /* .tagnav-line {
     display: none;
-  }
+  } */
   .tagnav-button {
     padding: 40px;
   }
@@ -33,8 +29,9 @@
 @media (max-width: 900px) {
   .movies-tagnav {
     width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    font-size: 1em;
   }
 }
 
@@ -63,9 +60,9 @@
   /* border: none; */
 }
 
-.active-tagnav {
+/* .active-tagnav {
   background-color: rgb(207, 207, 207);
-}
+} */
 
 .tagnav-div {
   display: flex;
@@ -75,12 +72,32 @@
 }
 
 .tagnav-line {
-  position: absolute;
+  /* position: absolute; */
   width: 30px;
-  margin-top: 30px;
+  margin-top: -20px;
   /* margin-bottom: 20px; */
 }
 
 .tagnav-div > svg:hover {
   color: blue;
 }
+
+@media (max-width: 1000px) {
+  .active-tagnav {
+    background-color: transparent;
+  }
+  .tagnav-button:hover {
+    background-color: inherit;
+  }
+  .tagnav-div {
+    padding-bottom: 0;
+  }
+}
+
+
+/* 
+@media (min-width: 1000px) {
+  .tagnav-line {
+    display: none;
+  }
+} */
