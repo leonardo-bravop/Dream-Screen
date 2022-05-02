@@ -86,23 +86,24 @@ router.get("/users/search/:searchValue", (req, res) => {
     attributes: ["id", "nickName", "favoriteMovies", "favoriteTv"],
     where: { nickName: { [Op.like]: `%${searchValue}%` } },
   }).then((users) => {
-    if(users.length) res.send(users);
-    else res.sendStatus(204)
+    if (users.length) res.send(users);
+    else res.sendStatus(204);
   });
 });
 
-router.get("/users/:id", (req, res) => {
-  const { id } = req.params;
-  console.log(`id es`, req.params);
-  User.findByPk(id,{
-    attributes: ["id", "nickName", "favoriteMovies", "favoriteTv"]
-  }).then((user) => {
+router.get("/users/:nickName", (req, res) => {
+  const { nickName } = req.params;
+  console.log(`nickName es`, req.params);
+  User.findOne(
+    { where: { nickName: nickName } },
+    {
+      attributes: ["id", "nickName", "favoriteMovies", "favoriteTv"],
+    }
+  ).then((user) => {
     console.log(`user es`, user);
-    if(user.id) res.send(user);
-    else res.sendStatus(204)
+    if (user.id) res.send(user);
+    else res.sendStatus(204);
   });
 });
-
-
 
 module.exports = router;
