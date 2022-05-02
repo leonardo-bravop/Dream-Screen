@@ -71,7 +71,7 @@ const Users = () => {
             })
           : noResults}
 
-        {loading && <Spinner />}
+        {loading && <Spinner size={"3em"} />}
       </div>
     </>
   );

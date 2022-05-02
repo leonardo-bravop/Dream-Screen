@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { sendLogoutRequest } from "../../state/user";
+import { FaUserCircle } from "react-icons/fa";
 import "./Navbar.css";
 
 const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
@@ -81,10 +82,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
                   marginRight: "20px",
                 }}
               >
-                <img
-                  src="/login.png"
-                  style={{ height: "48px", margin: "0 20px" }}
-                />
+            <FaUserCircle size={"3em"} color={"white"} style={{margin: "0 10px 0 0"}}/>
                 <div
                   style={{
                     color: "white",

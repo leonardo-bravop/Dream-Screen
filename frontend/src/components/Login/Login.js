@@ -56,7 +56,7 @@ const Login = () => {
           Login
         </button>
       </form>
-      {loading && <Spinner />}
+      {loading && <Spinner size={"3em"} />}
       {user.error && <p style={{ color: "red" }}>Invalid Credentials</p>}
     </div>
   );

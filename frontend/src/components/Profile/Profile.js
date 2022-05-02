@@ -22,11 +22,17 @@ const Profile = ({ edit }) => {
         if (res.data.favoriteMovies) {
           let favMovies = res.data.favoriteMovies.split(" ");
           favMovies.pop();
+          if (favMovies.length > 18) {
+            favMovies = favMovies.slice(0, 18);
+          }
           setFavoriteMovies(favMovies);
         }
         if (res.data.favoriteTv) {
           let favTv = res.data.favoriteTv.split(" ");
           favTv.pop();
+          if (favTv.length > 18) {
+            favTv = favTv.slice(0, 17);
+          }
           setFavoriteTv(favTv);
         }
         setLoading(false);

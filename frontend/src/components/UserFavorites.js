@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Route, Routes, useMatch, useNavigate } from "react-router";
 import FavoritesCard from "../commons/FavoritesCard/FavoritesCard";
-import "./Movies/Movies.css";
+import "./UserFavorites.css"
 import { useEffect, useState } from "react";
 
 const UserFavorites = () => {
@@ -35,7 +35,7 @@ const UserFavorites = () => {
   return (
     <div>
       <h2 style={{ textAlign: "center" }}>Favorites</h2>
-      <div className="movies-tagnav">
+      <div className="favorites-tagnav">
         {statesArray.map((state) => {
           return (
             <Link to={state} onClick={() => setSelected(state)}>
@@ -46,11 +46,11 @@ const UserFavorites = () => {
                   }`}
                 >
                   {state[0].toUpperCase() +
-                    state.slice(1, state.length).split("_").join(" ")}
+                    state.slice(1, state.length).split("_").join(" ").toUpperCase()}
                 </button>
-                {/* {selected === state && (
+                {selected === state && (
                   <img src="/line.svg" className="tagnav-line" />
-                )} */}
+                )}
               </div>
             </Link>
           );

@@ -122,7 +122,7 @@
   width: 100%;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
   .userButtons {
     width: 100%;
     margin: 20px 0px;
@@ -159,7 +159,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1250px) {
   .hamburger-menu,
   .close-menu,
   .mobile-navigation {
@@ -206,7 +206,7 @@
 }
 
 
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
   .navbar {
     height: 64px;
   }

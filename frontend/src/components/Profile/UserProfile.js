@@ -12,14 +12,20 @@ const UserProfile = () => {
     if (user.favoriteMovies) {
       let favMovies = user.favoriteMovies.split(" ");
       favMovies.pop();
+      if(favMovies.length>18) {
+        favMovies = favMovies.slice(0,18)
+      }
       setFavoriteMovies(favMovies);
     }
     if (user.favoriteTv) {
       let favTv = user.favoriteTv.split(" ");
       favTv.pop();
+      if(favTv.length>18) {
+        favTv = favTv.slice(0,17)
+      }
       setFavoriteTv(favTv);
     }
-  }, []);
+  }, [user.favoriteMovies, user.favoriteTv]);
 
   return (
     <div className="user-content">

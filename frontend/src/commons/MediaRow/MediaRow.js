@@ -36,7 +36,7 @@ const MediaRow = ({ mediaType, state }) => {
     >
       {loading && (
         <div style={{ position: "absolute", marginTop: "20px" }}>
-          <Spinner />
+          <Spinner size={"3em"} />
         </div>
       )}
       {!loading && <ResponsiveGrid media={media} />}
