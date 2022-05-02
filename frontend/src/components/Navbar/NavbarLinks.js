@@ -36,6 +36,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
           onClick={() => {
             opened.setValue(false);
             selected.setValue("tv-shows")
+            setScrollDirection("")
           }}
         >
           {selected.value==="tv-shows"? <button className="selectedMediaNavButton">TV Shows</button> :  <button className="mediaNavButton">TV Shows</button>}
@@ -45,6 +46,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
           onClick={() => {
             opened.setValue(false);
             selected.setValue("users")
+            setScrollDirection("")
           }}
         >
           {selected.value==="users"? <button className="selectedMediaNavButton">Users</button> :  <button className="mediaNavButton">Users</button>}
@@ -55,6 +57,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
            onClick={() => {
              opened.setValue(false);
              selected.setValue("my-favorites")
+             setScrollDirection("")
            }}
          >
           {selected.value==="my-favorites"? <button className="selectedMediaNavButton">My Favorites</button> :  <button className="mediaNavButton">My Favorites</button>}

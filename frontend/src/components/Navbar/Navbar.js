@@ -12,7 +12,7 @@ const Navbar = () => {
   const [selected, setSelected] = useState("");
   let selectedObj = { value: selected, setValue: setSelected };
 
-const matchState = useMatch("/*");
+  const matchState = useMatch("/*");
   const matchItem = useMatch("/media/:mediaType/:state");
 
   const state = matchState.pathname.split("/");
@@ -49,14 +49,13 @@ const matchState = useMatch("/*");
   return (
     <nav
       className="navbar"
-      style={
-        matchItem &&
-         scrollDirection
-          ? scrollDirection === "down"
-            ? styles.active
-            : styles.hidden
-          : null
-      }
+      // style={
+      //   matchItem && scrollDirection
+      //     ? scrollDirection === "down"
+      //       ? styles.active
+      //       : styles.hidden
+      //     : null
+      // }
     >
       <div className="logoDiv">
         <Link
