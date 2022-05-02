@@ -1,29 +1,22 @@
 import "./Profile.css";
 import { useSelector } from "react-redux";
-import FavoritesCard from "../../commons/FavoritesCard";
+import ProfileCard from "../../commons/ProfileCard/ProfileCard";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const Profile = () => {
+const Profile = ({edit}) => {
   const user = useSelector((state) => state.user);
-  const { id } = useParams();
-  console.log(`id es`, id);
+  const { nickName } = useParams();
+  console.log(`id es`, nickName);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [favoriteTv, setFavoriteTv] = useState([]);
-  // let favoriteMovies = "639933 634649 414906 634 534 300 1498 ".split(" ");
-  // let favoriteMovies = useSelector((state) =>
-  //   state.user.favoriteMovies.split(" ")
-  // );
-  // favoriteMovies.pop();
-
-  // let favoriteTv = "456 52814 92749 ".split(" ");
-  // favoriteTv.pop();
 
   const [userData, setUserData] = useState({});
   useEffect(() => {
-    if(id) {
-      axios.get(`/api/users/${id}`).then((res) => {
+    if(nickName) {
+      axios.get(`/api/users/${nickName}`).then((res) => {
         console.log(`res es`, res);
         setUserData(res.data);
         if (res.data.favoriteMovies) {
@@ -67,16 +60,17 @@ const Profile = () => {
       </div>
 
       <div className="favoriteMedia">
+        {edit? <Link to="/user/my-favorites/movies"><button>Edit</button></Link>:null}
         <h2>Favorite movies</h2>
         <div className="cards-div">
           {favoriteMovies.length? favoriteMovies.map((movieId) => {
-            return <FavoritesCard movieId={movieId} mediaType={"movie"} />;
+            return <ProfileCard mediaId={movieId} mediaType={"movie"} />;
           }) : `${userData.nickName} hasn't any favorite movie yet`}
         </div>
         <h2>Favorite Tv Shows</h2>
         <div className="cards-div">
           {favoriteTv.length? favoriteTv.map((tvId) => {
-            return <FavoritesCard movieId={tvId} mediaType={"tv"} />;
+            return <ProfileCard mediaId={tvId} mediaType={"tv"} />;
           }): `${userData.nickName} hasn't any favorite Tv Show yet`}
         </div>
       </div>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Row from "./Row";
+import Row from "./Row/Row";
 import { Routes, Route } from "react-router";
-import Grid from "./Grid";
+import Grid from "./Grid/Grid";
 
 const Content = () => {
   const [popularMedia, setPopularMedia] = useState([]);

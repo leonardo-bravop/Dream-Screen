@@ -5,15 +5,16 @@ import Media from "./components/Media";
 import "./App.css";
 import SearchForm from "./components/SearchForm/SearchForm";
 import Register from "./components/Register/Register";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import SearchListGrid from "./commons/SearchListGrid";
 import { persistUser } from "./state/user";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Users from "./components/Users";
 import UserFavorites from "./components/UserFavorites";
-import Profile from "./components/Profile.js/Profile";
+import Profile from "./components/Profile/Profile";
 import Invitation from "./Invitation";
+import UserProfile from "./components/Profile/UserProfile";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,12 +45,7 @@ const App = () => {
                 path={`/media/:mediaType/search/:searchValue`}
                 element={<SearchListGrid />}
               />
-              <Route
-                path="/user/search"
-                element={
-                  <Invitation/>
-                }
-              ></Route>
+              <Route path="/user/search" element={<Invitation />}></Route>
               <Route
                 path="/user/search/:searchValue"
                 element={<Users />}
@@ -66,8 +62,11 @@ const App = () => {
                   ></Route>
                 </>
               ) : null}
-              <Route path="/user/profile" element={<Profile />}></Route>
-              <Route path="/user/profile/:id" element={<Profile />}></Route>
+              <Route path="/user/profile" element={<UserProfile />}></Route>
+              <Route
+                path="/user/profile/:nickName"
+                element={<Profile />}
+              ></Route>
             </Routes>
           </div>
         </div>

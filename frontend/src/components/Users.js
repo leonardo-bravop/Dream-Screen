@@ -8,6 +8,7 @@ import "./UserSearch.css";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false);
   const [noResults, setNoResults] = useState("");
   const { searchValue } = useParams();
@@ -15,13 +16,18 @@ const Users = () => {
   useEffect(() => {
     setUsers([]);
     setNoResults("");
+    setError(false)
     axios.get(`/api/users/search/${searchValue}`).then((res) => {
       console.log(`res es`, res);
       setUsers(res.data);
       setLoading(false);
       setNoResults("No se encontraron resultados");
       console.log(`setee a falses`);
-    });
+    }).catch(error=>{
+      console.log(error);
+      setLoading(false)
+      setError(true)
+    })
     setLoading(true);
     console.log(`users es`, users);
   }, [searchValue]);
@@ -36,6 +42,7 @@ const Users = () => {
             <span className="tableColumn columnTitle">FAVORITE TV SHOWS</span>
           </div>
         </div>
+        {error && <span>Ups! There was an error, please try again later!</span>}
         {users.length
           ? users.map((user) => {
               let favoriteMovies = user.favoriteMovies.split(" ");
@@ -44,7 +51,7 @@ const Users = () => {
               favoriteTv.pop();
               return (
                 <div className="userRowDiv">
-                  <Link to={`/user/profile/${user.id}`}>
+                  <Link to={`/user/profile/${user.nickName}`}>
                     <div className="userRow">
                       <span className="tableColumn">{user.nickName}</span>
                       <span className="tableColumn">

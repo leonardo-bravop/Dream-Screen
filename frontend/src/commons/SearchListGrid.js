@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card from "../commons/Card/Card";
 import { useMatch, useParams, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import axios from "axios";

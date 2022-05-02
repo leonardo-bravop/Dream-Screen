@@ -1,4 +1,4 @@
-import Card from "../commons/Card";
+import Card from "../../commons/Card/Card";
 import "./Grid.css";
 
 const Grid = ({ media }) => {

@@ -25,6 +25,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    console.log(`matchstate es`, matchState);
     console.log(`scrolldirection es`, scrollDirection);
     console.log(`state es`, state);
     console.log(`matchitem es`, matchItem);

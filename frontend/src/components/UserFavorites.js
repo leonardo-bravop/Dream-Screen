@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Route, Routes, useMatch, useNavigate } from "react-router";
-import FavoritesCard from "../commons/FavoritesCard";
+import FavoritesCard from "../commons/FavoritesCard/FavoritesCard";
 import "./Movies/Movies.css";
 import { useEffect, useState } from "react";
 
@@ -69,13 +69,13 @@ const UserFavorites = () => {
           <Route
             path="movies"
             element={favoriteMovies.map((movieId) => {
-              return <FavoritesCard movieId={movieId} mediaType={"movie"} />;
+              return <FavoritesCard mediaId={movieId} mediaType={"movie"} />;
             })}
           ></Route>
           <Route
             path="tv_Shows"
             element={favoriteTv.map((movieId) => {
-              return <FavoritesCard movieId={movieId} mediaType={"tv"} />;
+              return <FavoritesCard mediaId={movieId} mediaType={"tv"} />;
             })}
           ></Route>
         </Routes>

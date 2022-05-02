@@ -1,6 +1,6 @@
 import { Route, Routes, useMatch, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import MediaRow from "../MediaRow";
+import MediaRow from "../../commons/MediaRow/MediaRow";
 import { Link } from "react-router-dom";
 import "../Movies/Movies.css";
 

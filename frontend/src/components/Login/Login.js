@@ -1,9 +1,9 @@
-import useInput from "../hooks/useInput";
+import useInput from "../../hooks/useInput";
 import { useNavigate } from "react-router";
-import { sendLoginRequest } from "../state/user";
+import { sendLoginRequest } from "../../state/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import Spinner from "./Spinner";
+import Spinner from "../Spinner";
 import "./Login.css";
 
 const Login = () => {

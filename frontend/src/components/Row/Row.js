@@ -1,4 +1,4 @@
-import Card from "../commons/Card";
+import Card from "../../commons/Card/Card";
 import "./Row.css";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import { useContext, useEffect, useState } from "react";

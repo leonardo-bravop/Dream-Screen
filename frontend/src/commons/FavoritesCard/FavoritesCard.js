@@ -4,10 +4,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { BsTrash } from "react-icons/bs";
-import { RemoveFromFavorites } from "../state/user";
+import { RemoveFromFavorites } from "../../state/user";
 import "./FavoritesCard.css"
 
-const FavoritesCard = ({ movieId, mediaType }) => {
+const FavoritesCard = ({ mediaId, mediaType }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,14 +23,14 @@ const FavoritesCard = ({ movieId, mediaType }) => {
   });
 
   const onRemoveClick = (event) => {
-    dispatch(RemoveFromFavorites({ mediaType, mediaId: movieId })).then(
+    dispatch(RemoveFromFavorites({ mediaType, mediaId })).then(
       (res) => res
     );
   };
 
   useEffect(() => {
     axios
-      .get(`${tmdbAPI}/${mediaType}/${movieId}?api_key=${key}&language=en-US`)
+      .get(`${tmdbAPI}/${mediaType}/${mediaId}?api_key=${key}&language=en-US`)
       .then((res) => res.data)
       .then((data) => {
         setData(data);
@@ -39,7 +39,7 @@ const FavoritesCard = ({ movieId, mediaType }) => {
         console.log(error);
         // navigate("/404");
       });
-  }, [movieId]);
+  }, [mediaId]);
 
   return (
     <div className="favoritesCard">
