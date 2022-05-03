@@ -49,26 +49,30 @@ const Profile = ({ edit }) => {
 
       <div className="favoriteMedia">
         <h2>Favorite movies</h2>
-        {loading && <Spinner />}
+        {loading && <Spinner size={"3em"} />}
         <div className="cards-div">
-          {favoriteMovies.length
-            ? favoriteMovies.map((movieId) => {
-                return <ProfileCard mediaId={movieId} mediaType={"movie"} />;
-              })
-            : !loading
-            ? `${userData.nickName} doesn't have any favorite movie yet`
-            : null}
+          {favoriteMovies.length ? (
+            favoriteMovies.map((movieId) => {
+              return <ProfileCard mediaId={movieId} mediaType={"movie"} />;
+            })
+          ) : !loading ? (
+            <span style={{ textAlign: "center" }}>
+              {userData.nickName} doesn't have any favorite movie yet
+            </span>
+          ) : null}
         </div>
         <h2>Favorite Tv Shows</h2>
-        {loading && <Spinner />}
+        {loading && <Spinner size={"3em"} />}
         <div className="cards-div">
-          {favoriteTv.length
-            ? favoriteTv.map((tvId) => {
-                return <ProfileCard mediaId={tvId} mediaType={"tv"} />;
-              })
-            : !loading
-            ? `${userData.nickName} doesn't have any favorite Tv Show yet`
-            : null}
+          {favoriteTv.length ? (
+            favoriteTv.map((tvId) => {
+              return <ProfileCard mediaId={tvId} mediaType={"tv"} />;
+            })
+          ) : !loading ? (
+            <span style={{ textAlign: "center" }}>
+              {userData.nickName} doesn't have any favorite Tv Show yet
+            </span>
+          ) : null}
         </div>
       </div>
     </div>

@@ -60,9 +60,6 @@
   /* border: none; */
 }
 
-/* .active-tagnav {
-  background-color: rgb(207, 207, 207);
-} */
 
 .tagnav-div {
   display: flex;
@@ -73,9 +70,9 @@
 
 .tagnav-line {
   /* position: absolute; */
-  width: 30px;
-  margin-top: -20px;
-  /* margin-bottom: 20px; */
+  width: 180px;
+  margin-top: -5px;
+    /* margin-bottom: 20px; */
 }
 
 .tagnav-div > svg:hover {
@@ -95,9 +92,12 @@
 }
 
 
-/* 
-@media (min-width: 1000px) {
+
+@media (min-width: 420px) {
   .tagnav-line {
     display: none;
   }
-} */
+  .active-tagnav {
+    background-color: rgb(207, 207, 207);
+  }  
+}

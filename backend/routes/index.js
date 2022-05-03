@@ -12,6 +12,9 @@ router.get("/users", (req, res) => {
 });
 
 router.post("/register", (req, res) => {
+  if (!req.body.password) res.sendStatus(400);
+  if (!req.body.nickName) res.sendStatus(400);
+  if (!req.body.email) res.sendStatus(400);
   User.findOne({ where: { email: req.body.email } }).then((user) => {
     if (!user) {
       User.create(req.body).then((user) => {

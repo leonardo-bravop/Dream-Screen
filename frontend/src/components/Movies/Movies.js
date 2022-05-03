@@ -54,7 +54,7 @@ const Movies = () => {
                       .toUpperCase()}
                 </button>
                 {selected === state && (
-                  <img src="/line.svg" className="tagnav-line" />
+                  <img src="/vector.svg" className="tagnav-line" />
                 )}
               </div>
             </Link>

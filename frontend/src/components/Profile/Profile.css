@@ -27,6 +27,8 @@
   object-fit: cover;
 }
 
+
+
 .user-picture {
   height: 150px;
   width: 150px;
@@ -77,4 +79,13 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 30px;
+}
+
+@media (max-width: 500px) {
+  .user-banner-div {
+    height: 200px;
+  }
+  .user-nickname {
+    font-size: 1.8em;
+  }
 }

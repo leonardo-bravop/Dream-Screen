@@ -163,7 +163,7 @@ const Item = () => {
             </div>
             {loading ? (
               <div className="heartDivItem">
-                <Spinner />
+                <Spinner size={"2em"}/>
               </div>
             ) : user.id &&
               (user.favoriteMovies.includes(id) ||

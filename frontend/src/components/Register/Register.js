@@ -19,6 +19,10 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateString(nickname.value)) return;
+    if (!validateEmail(email.value)) return;
+
     dispatch(
       sendSignUpRequest({
         email: email.value,
@@ -30,17 +34,35 @@ const Register = () => {
         if (data.payload) {
           dispatch(
             sendLoginRequest({ email: email.value, password: password.value })
-          ).then(() => {
+          ).then((res) => {
+            console.log(`res es`, res);
             setLoading(false);
             navigate("/");
           });
           setLoading(true);
         } else {
-          alert(`User already exists. Please use another email.`);
+          console.log(`data es`, data);
+          // alert(`User already exists. Please use another email.`);
         }
       })
       .catch((error) => console.log(`ERROR ES:`, error));
     setLoading(true);
+  };
+
+  const validateEmail = email => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      return true;
+    }
+    alert('Please enter a valid email address');
+    return false;
+  };
+
+  const validateString = str => {
+    if (/^([a-zA-Z0-9_'.-]){0,20}$/.test(str)) {
+      return true;
+    }
+    alert("Only letters, numbers and _ - ' . are allowed");
+    return false;
   };
 
   return (
@@ -68,6 +90,7 @@ const Register = () => {
               name="email"
               {...email}
               className="inputText"
+              placeholder="awesome@email.com"
             ></input>
             <label htmlFor="password" className="inputLabel">
               Password
@@ -75,7 +98,10 @@ const Register = () => {
             <input
               type="password"
               name="password"
+              minLength={3}
+              maxLength={15}
               {...password}
+              placeholder="8-15 characters"
               className="inputText"
             ></input>
             <label htmlFor="nickname" className="inputLabel">
@@ -84,14 +110,17 @@ const Register = () => {
             <input
               type="text"
               name="nickname"
+              minLength={2}
+              maxLength={20}
               {...nickname}
               className="inputText"
+              placeholder="2-20 characters"
             ></input>
             <button type="submit" className="navButton" id="registerButton">
               Sign up
             </button>
           </form>
-          {loading && <Spinner />}
+          {loading && <Spinner size={"3em"}/>}
           {user.error && <p style={{ color: "red" }}>Invalid values</p>}
         </div>
       ) : null}

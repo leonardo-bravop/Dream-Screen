@@ -8,7 +8,7 @@ import "./UserSearch.css";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [noResults, setNoResults] = useState("");
   const { searchValue } = useParams();
@@ -16,18 +16,21 @@ const Users = () => {
   useEffect(() => {
     setUsers([]);
     setNoResults("");
-    setError(false)
-    axios.get(`/api/users/search/${searchValue}`).then((res) => {
-      console.log(`res es`, res);
-      setUsers(res.data);
-      setLoading(false);
-      setNoResults("No se encontraron resultados");
-      console.log(`setee a falses`);
-    }).catch(error=>{
-      console.log(error);
-      setLoading(false)
-      setError(true)
-    })
+    setError(false);
+    axios
+      .get(`/api/users/search/${searchValue}`)
+      .then((res) => {
+        console.log(`res es`, res);
+        setUsers(res.data);
+        setLoading(false);
+        setNoResults("No se encontraron resultados");
+        console.log(`setee a falses`);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+        setError(true);
+      });
     setLoading(true);
     console.log(`users es`, users);
   }, [searchValue]);
@@ -53,7 +56,11 @@ const Users = () => {
                 <div className="userRowDiv">
                   <Link to={`/user/profile/${user.nickName}`}>
                     <div className="userRow">
-                      <span className="tableColumn">{user.nickName}</span>
+                      <span className="tableColumn">
+                        {user.nickName.length > 12
+                          ? user.nickName.substring(0, 12) + "..."
+                          : user.nickName}
+                      </span>
                       <span className="tableColumn">
                         {favoriteMovies.length > 1
                           ? `${favoriteMovies.length} `
