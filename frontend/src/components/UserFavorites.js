@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Route, Routes, useMatch, useNavigate } from "react-router";
 import FavoritesCard from "../commons/FavoritesCard/FavoritesCard";
-import "./UserFavorites.css"
+import "./UserFavorites.css";
 import { useEffect, useState } from "react";
 
 const UserFavorites = () => {
@@ -34,7 +34,7 @@ const UserFavorites = () => {
 
   return (
     <div>
-      <h2 style={{ textAlign: "center", padding: "0 20px 20px", margin: "0 0 20px 0" }}>My Favorites</h2>
+      <h2 className="fav-title">Your Movies and TV Shows Collection</h2>
       <div className="favorites-tagnav">
         {statesArray.map((state) => {
           return (
@@ -46,7 +46,11 @@ const UserFavorites = () => {
                   }`}
                 >
                   {state[0].toUpperCase() +
-                    state.slice(1, state.length).split("_").join(" ").toUpperCase()}
+                    state
+                      .slice(1, state.length)
+                      .split("_")
+                      .join(" ")
+                      .toUpperCase()}
                 </button>
                 {selected === state && (
                   <img src="/vector.svg" className="tagnav-line" />
@@ -57,13 +61,7 @@ const UserFavorites = () => {
         })}
       </div>
       <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          padding: "0 15%",
-          marginTop: "20px"
-        }}
+       className="favs-container"
       >
         <Routes>
           <Route

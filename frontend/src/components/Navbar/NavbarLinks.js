@@ -13,6 +13,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    selected.setValue("")
     dispatch(sendLogoutRequest())
       .then((res) => res)
       .then(() => navigate("/"));
@@ -82,7 +83,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
                   marginRight: "20px",
                 }}
               >
-            <FaUserCircle size={"3em"} color={"white"} style={{margin: "0 10px 0 0"}}/>
+            <FaUserCircle size={"3em"} id="user-icon"/>
                 <div
                   style={{
                     color: "white",

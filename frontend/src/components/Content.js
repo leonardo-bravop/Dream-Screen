@@ -3,41 +3,26 @@ import axios from "axios";
 import Row from "./Row/Row";
 import { Routes, Route } from "react-router";
 import Grid from "./Grid/Grid";
+import Spinner from "./Spinner"
 
 const Content = () => {
   const [popularMedia, setPopularMedia] = useState([]);
-  const [moviesPLaying, setMoviesPlaying] = useState([]);
-  const [comingMovies, setComingMovies] = useState([]);
+  const [loading, setLoading] = useState(false)
   const tmdbAPI = "https://api.themoviedb.org/3";
   const apiKey = "46b1d60d45fa9282f81dabe7e845515e";
 
   useEffect(() => {
+    setLoading(false)
     axios
       .get(
         `${tmdbAPI}/trending/all/day?api_key=${apiKey}&language=en-US&page=1`
       )
       .then((res) => {
+        setLoading(false)
         setPopularMedia(res.data.results);
       });
+      setLoading(true)
   }, []);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `${tmdbAPI}/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
-  //     )
-  //     .then((res) => {
-  //       setMoviesPlaying(res.data.results);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`${tmdbAPI}/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`)
-  //     .then((res) => {
-  //       setComingMovies(res.data.results);
-  //     });
-  // }, []);
 
   return (
     <Routes>
@@ -48,18 +33,9 @@ const Content = () => {
             <div>
               <h2 style={{color: "#02175a"}}>TRENDING TODAY</h2>
             </div>
+            {loading && <div style={{marginTop: "60px"}}><Spinner size={"3em"} color="#02175a"/></div>}
             <Row media={popularMedia} />
             <Grid media={popularMedia.slice(0, 6)} />
-            {/* <div>
-              <h2>Now playing:</h2>
-            </div> */}
-            {/* <Row media={moviesPLaying} /> */}
-            {/* <Grid media={moviesPLaying.slice(0, 6)} /> */}
-            {/* <div>
-              <h2>Coming soon:</h2>
-            </div> */}
-            {/* <Row media={comingMovies} /> */}
-            {/* <Grid media={comingMovies.slice(0, 6)} /> */}
             <div
               style={{
                 backgroundColor: "#02175a",

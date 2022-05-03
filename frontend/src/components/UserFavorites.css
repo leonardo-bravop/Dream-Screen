@@ -1,3 +1,10 @@
+.fav-title {
+  text-align: center;
+  padding: 0 20px 20px;
+  margin: 0 0 20px 0;
+  font-size: 1.6em;
+}
+
 .favorites-tagnav {
   display: flex;
   justify-content: center;
@@ -17,6 +24,13 @@
   width: 180px;
 }
 
+.favs-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 @media (max-width: 900px) {
   .favorites-tagnav {
     width: 100%;
@@ -25,8 +39,11 @@
   }
 }
 
-@media (min-width: 420px) {
+@media (min-width: 440px) {
   .favorites-tagnav {
     height: 70px;
+  }
+  .favs-container {
+    padding: 0 15%;
   }
 }

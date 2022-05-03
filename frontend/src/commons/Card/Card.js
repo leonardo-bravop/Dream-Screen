@@ -14,7 +14,6 @@ const Card = ({ data, itemId, title, onClick }) => {
   return (
     <div className="card"  onClick={() => onClick(visibility)} tabIndex={0}>
       <Link to={`/media/${mediaType}/id/${data.id}`}>
-        {/* <div className="card-img"> */}
         <figure className="image">
           <img
             className="card-img"
@@ -26,7 +25,6 @@ const Card = ({ data, itemId, title, onClick }) => {
             alt={title}
           />
         </figure>
-        {/* </div> */}
         <div className="card-content">
           <p>{title}</p>
         </div>
