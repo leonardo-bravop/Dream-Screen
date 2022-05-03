@@ -3,25 +3,19 @@ import axios from "axios";
 import Row from "./Row/Row";
 import { Routes, Route } from "react-router";
 import Grid from "./Grid/Grid";
-import Spinner from "./Spinner"
+import Spinner from "./Spinner";
 
 const Content = () => {
   const [popularMedia, setPopularMedia] = useState([]);
-  const [loading, setLoading] = useState(false)
-  const tmdbAPI = "https://api.themoviedb.org/3";
-  const apiKey = "46b1d60d45fa9282f81dabe7e845515e";
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(false)
-    axios
-      .get(
-        `${tmdbAPI}/trending/all/day?api_key=${apiKey}&language=en-US&page=1`
-      )
-      .then((res) => {
-        setLoading(false)
-        setPopularMedia(res.data.results);
-      });
-      setLoading(true)
+    setLoading(false);
+    axios.get(`/api/media/getTrending/en-US/1`).then((res) => {
+      setLoading(false);
+      setPopularMedia(res.data.results);
+    });
+    setLoading(true);
   }, []);
 
   return (
@@ -29,11 +23,21 @@ const Content = () => {
       <Route
         path=""
         element={
-          <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <div>
-              <h2 style={{color: "#02175a"}}>TRENDING TODAY</h2>
+              <h2 style={{ color: "#02175a" }}>TRENDING TODAY</h2>
             </div>
-            {loading && <div style={{marginTop: "60px"}}><Spinner size={"3em"} color="#02175a"/></div>}
+            {loading && (
+              <div style={{ marginTop: "60px" }}>
+                <Spinner size={"3em"} color="#02175a" />
+              </div>
+            )}
             <Row media={popularMedia} />
             <Grid media={popularMedia.slice(0, 6)} />
             <div

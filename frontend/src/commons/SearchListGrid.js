@@ -8,8 +8,6 @@ const SearchListGrid = () => {
   const navigate = useNavigate();
   const [anotherMedia, setAnotherMedia] = useState([]);
   const [noResults, setNoResults] = useState("");
-  const tmdbAPI = "https://api.themoviedb.org/3";
-  const key = "46b1d60d45fa9282f81dabe7e845515e";
   const matchGeneral = useMatch("/");
 
   const [loading, setLoading] = useState(false);
@@ -25,7 +23,7 @@ const SearchListGrid = () => {
     setNoResults("");
     axios
       .get(
-        `${tmdbAPI}/search/${mediaType}?api_key=${key}&language=en-US&query=${searchValue}`
+        `/api/media/${mediaType}/search/${searchValue}/en-US/1`
       )
       .then((res) => res.data)
       .then((data) => {
@@ -50,7 +48,7 @@ const SearchListGrid = () => {
     >
       {loading && (
         <div style={{ position: "absolute", marginTop: "20px" }}>
-          <Spinner />
+          <Spinner size={"3em"}/>
         </div>
       )}
       {anotherMedia.length

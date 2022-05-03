@@ -58,9 +58,15 @@
 
 .columnTitle {
   margin-top: 20px;
-  font-size: 1.2em;
+  font-size: 1.05em;
   font-weight: 500;
   align-self: center;
+}
+
+@media (min-width: 450px) {
+  .columnTitle {
+    font-size: 1.2em;
+  }
 }
 
 .tableColumn {
