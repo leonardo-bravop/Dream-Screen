@@ -34,7 +34,7 @@ const UserFavorites = () => {
 
   return (
     <div>
-      <h2 style={{ textAlign: "center" }}>Favorites</h2>
+      <h2 style={{ textAlign: "center", padding: "0 20px 20px", margin: "0 0 20px 0" }}>My Favorites</h2>
       <div className="favorites-tagnav">
         {statesArray.map((state) => {
           return (
@@ -49,7 +49,7 @@ const UserFavorites = () => {
                     state.slice(1, state.length).split("_").join(" ").toUpperCase()}
                 </button>
                 {selected === state && (
-                  <img src="/line.svg" className="tagnav-line" />
+                  <img src="/vector.svg" className="tagnav-line" />
                 )}
               </div>
             </Link>

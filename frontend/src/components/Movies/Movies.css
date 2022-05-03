@@ -10,7 +10,7 @@
   background-color: rgb(246, 246, 246);
   box-shadow: 3px 3px 8px 2px rgba(157, 156, 156, 0.3);
   border-radius: 8px;
-  min-height: 60px;
+  overflow-y: hidden;
 }
 
 .movies-tagnav > a {
@@ -21,9 +21,9 @@
   /* .tagnav-line {
     display: none;
   } */
-  .tagnav-button {
+  /* .tagnav-button {
     padding: 40px;
-  }
+  } */
 }
 
 @media (max-width: 900px) {
@@ -53,45 +53,24 @@
 
 .tagnav-button:hover {
   background-color: rgb(207, 207, 207);
-  /* font-weight: 600; */
   color: rgb(0, 0, 0);
-  /* font-size: 1.2em; */
-  /* padding: 0px 20px; */
-  /* border: none; */
 }
-
 
 .tagnav-div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 0;
+  padding:0
 }
 
 .tagnav-line {
-  /* position: absolute; */
   width: 180px;
   margin-top: -5px;
-    /* margin-bottom: 20px; */
 }
 
 .tagnav-div > svg:hover {
   color: blue;
 }
-
-@media (max-width: 1000px) {
-  .active-tagnav {
-    background-color: transparent;
-  }
-  .tagnav-button:hover {
-    background-color: inherit;
-  }
-  .tagnav-div {
-    padding-bottom: 0;
-  }
-}
-
-
 
 @media (min-width: 420px) {
   .tagnav-line {
@@ -99,5 +78,14 @@
   }
   .active-tagnav {
     background-color: rgb(207, 207, 207);
-  }  
+  }
+  .tagnav-button:hover {
+    background-color: rgb(207, 207, 207);
+  }
+  .tagnav-div {
+    padding: 10px 0;
+  }
+  .movies-tagnav {
+    height: 70px;
+  }
 }

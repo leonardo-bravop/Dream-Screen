@@ -3,27 +3,30 @@
   justify-content: center;
   margin-top: 20px;
   width: 100%;
-  /* min-width: 720px; */
   align-self: center;
   background-color: rgb(246, 246, 246);
   box-shadow: 3px 3px 8px 2px rgba(157, 156, 156, 0.3);
   border-radius: 8px;
-  min-height: 60px;
 }
 
 .favorites-tagnav > a {
   text-decoration: none;
 }
 
+.tagnav-button {
+  width: 180px;
+}
+
 @media (max-width: 900px) {
   .favorites-tagnav {
     width: 100%;
-    /* justify-content: flex-start; */
     overflow-x: scroll;
     font-size: 1em;
   }
+}
 
-  .tagnav-button {
-    width: 160px;
+@media (min-width: 420px) {
+  .favorites-tagnav {
+    height: 70px;
   }
 }
