@@ -11,11 +11,12 @@ import Spinner from "../../components/Spinner";
 import "./Item.css";
 
 const Item = () => {
-  const tmdbAPI = "https://api.themoviedb.org/3";
-  const key = "46b1d60d45fa9282f81dabe7e845515e";
+  // const tmdbAPI = "https://api.themoviedb.org/3";
+  // const key = "46b1d60d45fa9282f81dabe7e845515e";
   const navigate = useNavigate();
   const { media, id } = useParams();
   const [loading, setLoading] = useState(false);
+  const [loadingContent, setLoadingContent] = useState(false)
   const [data, setData] = useState({
     title: "",
     genres: "",
@@ -51,55 +52,29 @@ const Item = () => {
   };
 
   useEffect(() => {
+    setLoadingContent(false)
     axios
-      .get(`${tmdbAPI}/${media}/${id}?api_key=${key}&language=en-US`)
+      .get(`/api/media/${media}/id/${id}/language/en-US`)
       .then((res) => {
         console.log(res.data);
         setData(res.data);
+        setLoadingContent(false)
       })
       .catch(() => {
         console.log(`algo salio mal`);
       });
+      setLoadingContent(true)
   }, [id]);
 
   return (
     <>
-      {/* <div className="banner-div">
-        {data.backdrop_path ? (
-          <div
-            // src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`}
-            style={{backgroundImage: ` linear-gradient(to bottom, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.7) 100%), url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path})`}}
-            className="banner-img"
-          />
-        ) : (
-          <div
-            className="banner-img"
-            style={{ backgroundColor: "rgba(246, 246, 246, 0.9)" }}
-          ></div>
-        )}
-      </div> */}
-
-      {/* <div className="content-div"> */}
-      <div
+    {loadingContent&&<div style={{marginTop: "60px"}}><Spinner size={"3em"}/></div>}
+    {!loadingContent && <div
         className="movieContent"
         style={{
           backgroundImage: ` linear-gradient(to bottom, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.7) 100%), url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path})`,
         }}
       >
-        {/* <div className="banner-div">
-          {data.backdrop_path ? (
-            <img
-              src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`}
-              className="banner-img"
-            />
-          ) : (
-            <div
-              className="banner-img"
-              style={{ backgroundColor: "rgba(246, 246, 246, 0.9)" }}
-            ></div>
-          )}
-        </div> */}
-
         <div id="itemPicture">
           <img
             className="movie-pic"
@@ -163,7 +138,7 @@ const Item = () => {
             </div>
             {loading ? (
               <div className="heartDivItem">
-                <Spinner size={"2em"}/>
+                <Spinner size={"2em"} />
               </div>
             ) : user.id &&
               (user.favoriteMovies.includes(id) ||
@@ -180,8 +155,6 @@ const Item = () => {
                 <AiOutlineHeart />
               </button>
             )}
-            {/* <ul className="actions">User score: {data.vote_average}</ul> */}
-
             <div className="header_info">
               <h3 className="tagline">{data.tagline}</h3>
 
@@ -192,8 +165,8 @@ const Item = () => {
             </div>
           </section>
         </div>
-        {/* </div> */}
-      </div>
+      </div>}
+      
     </>
   );
 };

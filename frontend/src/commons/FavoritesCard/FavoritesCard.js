@@ -11,9 +11,6 @@ import Spinner from "../../components/Spinner";
 const FavoritesCard = ({ mediaId, mediaType }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const tmdbAPI = "https://api.themoviedb.org/3";
-  const key = "46b1d60d45fa9282f81dabe7e845515e";
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     title: "",
@@ -23,6 +20,7 @@ const FavoritesCard = ({ mediaId, mediaType }) => {
     overview: "",
     poster_path: "",
   });
+  const [loadingContent, setLoadingContent] = useState(false);
 
   const onRemoveClick = (event) => {
     dispatch(RemoveFromFavorites({ mediaType, mediaId })).then((res) =>
@@ -33,45 +31,52 @@ const FavoritesCard = ({ mediaId, mediaType }) => {
 
   useEffect(() => {
     setLoading(false);
+    setLoadingContent(false);
     axios
-      .get(`${tmdbAPI}/${mediaType}/${mediaId}?api_key=${key}&language=en-US`)
+      .get(`/api/media/${mediaType}/id/${mediaId}/language/en-US`)
       .then((res) => res.data)
       .then((data) => {
         setData(data);
+        setLoadingContent(false);
       })
       .catch((error) => {
         console.log(error);
         // navigate("/404");
       });
+    setLoadingContent(true);
   }, [mediaId]);
 
   return (
     <div className="favoritesCard">
-      {!loading ? (
-        <button className="trashDiv" onClick={onRemoveClick}>
-          <BsTrash />
-        </button>
-      ) : (
-        <div className="trashDiv trashSpinner">
-          <Spinner size={"2em"} />
-        </div>
-      )}
-      <Link to={`/media/${mediaType}/id/${data.id}`}>
-        <figure>
-          <img
-            className="image"
-            src={
-              data.poster_path
-                ? `https://image.tmdb.org/t/p/w200/${data.poster_path}`
-                : `/placeholder-image.png`
-            }
-            alt="Placeholder image"
-          />
-        </figure>
-        <div className="favcard-content">
-          <p>{data.title || data.name}</p>
-        </div>
-      </Link>
+      {!loadingContent ? (
+        <>
+          {!loading ? (
+            <button className="trashDiv" onClick={onRemoveClick}>
+              <BsTrash />
+            </button>
+          ) : (
+            <div className="trashDiv trashSpinner">
+              <Spinner size={"2em"} />
+            </div>
+          )}
+          <Link to={`/media/${mediaType}/id/${data.id}`}>
+            <figure>
+              <img
+                className="image"
+                src={
+                  data.poster_path
+                    ? `https://image.tmdb.org/t/p/w200/${data.poster_path}`
+                    : `/placeholder-image.png`
+                }
+                alt="Placeholder image"
+              />
+            </figure>
+            <div className="favcard-content">
+              <p>{data.title || data.name}</p>
+            </div>
+          </Link>
+        </>
+      ) : null}
     </div>
   );
 };

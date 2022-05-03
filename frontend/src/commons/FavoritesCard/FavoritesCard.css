@@ -78,15 +78,15 @@ figure {
 
 @media (max-width: 850px) {
   .favoritesCard, .image {
-  width: 120px;
+  width: 140px;
   }
   .favoritesCard {
-    height: 250px;
+    height: 270px;
   }
   .card-img {
     height: 180px;
   }
-  .favcard-content {
+  /* .favcard-content {
   font-size: 0.8em;
-  }
+  } */
 }

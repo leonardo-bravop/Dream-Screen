@@ -35,6 +35,7 @@
   .favorites-tagnav {
     width: 100%;
     overflow-x: scroll;
+    overflow-y: hidden;
     font-size: 1em;
   }
 }

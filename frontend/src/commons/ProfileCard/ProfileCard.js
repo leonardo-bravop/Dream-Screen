@@ -2,12 +2,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-import "../FavoritesCard/FavoritesCard.css"
+import "../FavoritesCard/FavoritesCard.css";
+import Spinner from "../../components/Spinner";
 
 const ProfileCard = ({ mediaId, mediaType }) => {
-
-  const tmdbAPI = "https://api.themoviedb.org/3";
-  const key = "46b1d60d45fa9282f81dabe7e845515e";
   const [data, setData] = useState({
     title: "",
     genres: "",
@@ -17,36 +15,47 @@ const ProfileCard = ({ mediaId, mediaType }) => {
     poster_path: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(false);
     axios
-      .get(`${tmdbAPI}/${mediaType}/${mediaId}?api_key=${key}&language=en-US`)
+      .get(`/api/media/${mediaType}/id/${mediaId}/language/en-US`)
       .then((res) => res.data)
       .then((data) => {
         setData(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
         // navigate("/404");
       });
+    setLoading(true);
   }, [mediaId]);
 
   return (
     <div className="favoritesCard">
-      <Link to={`/media/${mediaType}/id/${data.id}`}>
-        <div className="card-image">
-          <figure>
-            <img
-             className="image"
-              src={
-                data.poster_path
-                  ? `https://image.tmdb.org/t/p/w200/${data.poster_path}`
-                  : `/placeholder-image.png`
-              }
-              alt="Placeholder image"
-            />
-          </figure>
-        </div>
-      </Link>
+      {/* {loading && <Spinner size={"2em"} />} */}
+      {!loading && (
+        <Link to={`/media/${mediaType}/id/${data.id}`}>
+          <div className="card-image">
+            <figure>
+              <img
+                className="image"
+                src={
+                  data.poster_path
+                    ? `https://image.tmdb.org/t/p/w200/${data.poster_path}`
+                    : `/placeholder-image.png`
+                }
+                alt="Placeholder image"
+              />
+            </figure>
+          </div>
+          <div className="favcard-content">
+            <p>{data.title || data.name}</p>
+          </div>
+        </Link>
+      )}
     </div>
   );
 };
