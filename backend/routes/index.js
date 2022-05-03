@@ -2,8 +2,12 @@ const express = require("express");
 const passport = require("passport");
 const User = require("../models/User");
 const { Op } = require("sequelize");
+const media = require("./media")
 
 const router = express();
+
+router.use("/media", media)
+
 
 router.get("/users", (req, res) => {
   User.findAll().then((users) => {
