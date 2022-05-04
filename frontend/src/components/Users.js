@@ -18,7 +18,7 @@ const Users = () => {
     setNoResults("");
     setError(false);
     axios
-      .get(`/api/users/search/${searchValue}`)
+      .get(`/api/user/searchUsers/${searchValue}`)
       .then((res) => {
         console.log(`res es`, res);
         setUsers(res.data);

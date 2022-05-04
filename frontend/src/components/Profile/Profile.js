@@ -16,7 +16,7 @@ const Profile = ({ edit }) => {
   useEffect(() => {
     setLoading(false);
     if (nickName) {
-      axios.get(`/api/users/${nickName}`).then((res) => {
+      axios.get(`/api/user/searchOne/${nickName}`).then((res) => {
         console.log(`res es`, res);
         setUserData(res.data);
         if (res.data.favoriteMovies) {

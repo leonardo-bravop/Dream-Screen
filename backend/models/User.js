@@ -23,6 +23,9 @@ User.init(
     },
     nickName: {
       type: DataTypes.STRING,
+      validate: {
+        is: /^([a-zA-Z0-9_'.-]){0,20}$/
+      }
     },
     favoriteMovies: {
       type: DataTypes.STRING,

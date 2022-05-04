@@ -5,7 +5,7 @@ const {
   getByState,
   searchMediaByValue,
   getTrending,
-} = require("../controllers/MediaController");
+} = require("../controllers/mediaController");
 
 const router = express.Router();
 

@@ -45,7 +45,7 @@ const Register = () => {
           // alert(`User already exists. Please use another email.`);
         }
       })
-      .catch((error) => console.log(`ERROR ES:`, error));
+      .catch((error) => console.log(`ERROR:`, error));
     setLoading(true);
   };
 
