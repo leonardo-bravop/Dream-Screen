@@ -61,7 +61,7 @@ const Register = () => {
     if (/^([a-zA-Z0-9_'.-]){0,20}$/.test(str)) {
       return true;
     }
-    alert("Only letters, numbers and _ - ' . are allowed");
+    alert("[2-20] characters: letters, numbers and _ - ' . are allowed");
     return false;
   };
 

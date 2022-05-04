@@ -34,7 +34,7 @@
   display: block;
   width: 220px;
   margin: 20px;
-  text-decoration: overline;
+  /* text-decoration: overline; */
   font-size: 2em;
   font-weight: bold;
   color: #ffffff;

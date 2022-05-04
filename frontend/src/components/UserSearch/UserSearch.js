@@ -2,10 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import Spinner from "../components/Spinner/Spinner";
+import Spinner from "../Spinner/Spinner";
 import "./UserSearch.css";
 
-const Users = () => {
+const UserSearch = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -83,4 +83,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default UserSearch;

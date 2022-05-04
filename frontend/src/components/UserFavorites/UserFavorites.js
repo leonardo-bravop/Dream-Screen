@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Route, Routes, useMatch, useNavigate } from "react-router";
-import FavoritesCard from "../commons/FavoritesCard/FavoritesCard";
+import FavoritesCard from "../../commons/FavoritesCard/FavoritesCard";
 import "./UserFavorites.css";
 import { useEffect, useState } from "react";
 

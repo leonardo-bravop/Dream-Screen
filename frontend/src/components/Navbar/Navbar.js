@@ -31,7 +31,7 @@ const Navbar = () => {
     console.log(`matchitem es`, matchItem);
   }, []);
 
-  //Navbar hide functionality
+  // Navbar hide functionality
   const { y, x, scrollDirection, setScrollDirection } = useScroll();
 
   const styles = {
@@ -45,7 +45,7 @@ const Navbar = () => {
       transform: "translateY(-100%)",
     },
   };
-  //
+  // 
 
   return (
     <nav
@@ -64,7 +64,7 @@ const Navbar = () => {
           style={{ display: "flex", alignItems: "center" }}
           onClick={() => setSelected("")}
         >
-          <img src={"/tmdbLogo2.png"} className="logo-img" />
+          <img src={"/logo.svg"} className="logo-img" />
           <span className="topTitle">Dream Screen</span>
         </Link>
 
