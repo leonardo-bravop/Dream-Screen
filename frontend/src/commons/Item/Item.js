@@ -76,6 +76,7 @@ const Item = () => {
           className="movieContent"
           style={{
             backgroundImage: ` linear-gradient(to bottom, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.7) 100%), url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path})`,
+            backgroundPosition: "center"
           }}
         >
           <div id="itemPicture">
@@ -92,12 +93,16 @@ const Item = () => {
           <div className="media-wrapper">
             <section className="itemDescription">
               <div className="title">
-                <h2>
-                  {data.title || data.name}
-                  {data.release_date
-                    ? ` (${data.release_date.slice(0, 4)})`
-                    : null}
-                </h2>
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  <h2>
+                    {data.title || data.name}
+                    {data.release_date
+                      ? ` (${data.release_date.slice(0, 4)})`
+                      : data.first_air_date
+                      ? ` (${data.first_air_date.slice(0, 4)})`
+                      : null}
+                  </h2>
+                </span>
 
                 <div className="facts">
                   <div className="genres" style={{ display: "flex" }}>
@@ -115,6 +120,10 @@ const Item = () => {
                   </div>
                   {data.runtime ? (
                     <div className="runtime"> {data.runtime} minutes</div>
+                  ) : data.episode_run_time ? (
+                    <div className="runtime">
+                      {data.episode_run_time[0]} minutes
+                    </div>
                   ) : null}
                 </div>
               </div>

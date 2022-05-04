@@ -55,7 +55,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
         </Link>
         {user.id? (
            <Link
-           to="/user/my-favorites"
+           to="/user/my-favorites/movies"
            onClick={() => {
              opened.setValue(false);
              selected.setValue("my-favorites")
