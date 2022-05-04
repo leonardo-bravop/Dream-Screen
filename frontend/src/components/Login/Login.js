@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { sendLoginRequest } from "../../state/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import Spinner from "../Spinner";
+import Spinner from "../Spinner/Spinner";
 import "./Login.css";
 
 const Login = () => {

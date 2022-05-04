@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Spinner from "../Spinner";
+import Spinner from "../Spinner/Spinner";
 
 const Profile = ({ edit }) => {
   const { nickName } = useParams();

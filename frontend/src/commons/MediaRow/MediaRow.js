@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ResponsiveGrid from "../../commons/ResponsiveGrid";
-import Spinner from "../../components/Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 import "./MediaRow.css";
 
 const MediaRow = ({ mediaType, state }) => {

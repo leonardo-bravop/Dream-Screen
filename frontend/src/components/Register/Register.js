@@ -2,7 +2,7 @@ import useInput from "../../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import { sendSignUpRequest, sendLoginRequest } from "../../state/user";
 import { useNavigate } from "react-router";
-import Spinner from "../Spinner";
+import Spinner from "../Spinner/Spinner";
 import { useState } from "react";
 import "./Register.css";
 

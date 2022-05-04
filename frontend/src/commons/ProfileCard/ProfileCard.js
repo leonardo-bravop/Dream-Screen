@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 import "../FavoritesCard/FavoritesCard.css";
-import Spinner from "../../components/Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 
 const ProfileCard = ({ mediaId, mediaType }) => {
   const [data, setData] = useState({

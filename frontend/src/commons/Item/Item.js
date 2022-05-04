@@ -7,7 +7,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { addToFavoriteMovies, RemoveFromFavorites } from "../../state/user";
-import Spinner from "../../components/Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 import "./Item.css";
 
 const Item = () => {

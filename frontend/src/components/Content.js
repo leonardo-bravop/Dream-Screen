@@ -3,7 +3,7 @@ import axios from "axios";
 import Row from "./Row/Row";
 import { Routes, Route } from "react-router";
 import Grid from "./Grid/Grid";
-import Spinner from "./Spinner";
+import Spinner from "./Spinner/Spinner";
 
 const Content = () => {
   const [popularMedia, setPopularMedia] = useState([]);

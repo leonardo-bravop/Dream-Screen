@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { BsTrash } from "react-icons/bs";
 import { RemoveFromFavorites } from "../../state/user";
 import "./FavoritesCard.css";
-import Spinner from "../../components/Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 
 const FavoritesCard = ({ mediaId, mediaType }) => {
   const dispatch = useDispatch();
