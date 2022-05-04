@@ -1,13 +1,18 @@
 const axios = require("axios");
-require('dotenv').config()
+require("dotenv").config();
 apiKey = process.env.apiKey;
 
 exports.getById = (req, res) => {
   const { media, id, language } = req.params;
   axios
-    .get(`https://api.themoviedb.org/3/${media}/${id}?api_key=${apiKey}&language=${language}`)
+    .get(
+      `https://api.themoviedb.org/3/${media}/${id}?api_key=${apiKey}&language=${language}`
+    )
     .then(({ data }) => {
       res.send(data);
+    })
+    .catch((error) => {
+      next(error);
     });
 };
 
@@ -19,6 +24,9 @@ exports.getByState = (req, res) => {
     )
     .then(({ data }) => {
       res.send(data);
+    })
+    .catch((error) => {
+      next(error);
     });
 };
 
@@ -30,6 +38,9 @@ exports.searchMediaByValue = (req, res) => {
     )
     .then(({ data }) => {
       res.send(data);
+    })
+    .catch((error) => {
+      next(error);
     });
 };
 
@@ -41,7 +52,8 @@ exports.getTrending = (req, res, next) => {
     )
     .then(({ data }) => {
       res.send(data);
-    }).catch(error=>{
-      next(error)
     })
+    .catch((error) => {
+      next(error);
+    });
 };

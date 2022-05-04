@@ -1,5 +1,4 @@
 const express = require("express");
-// var cors = require('cors')
 const routes = require("./routes");
 
 const dotenv = require("dotenv");
@@ -15,11 +14,8 @@ const localStrategy = require("passport-local").Strategy;
 const app = express();
 dotenv.config();
 
-// app.use(cors())
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 //Passport config
 app.use(cookieParser());
@@ -62,7 +58,6 @@ passport.deserializeUser(function (id, done) {
     .catch(done);
 });
 
-
 //Check route
 app.get("/", (req, res) => {
   res.send("API is running...");
@@ -73,16 +68,14 @@ app.use("/api", routes);
 //Error middleware
 app.use(function (err, req, res, next) {
   console.log(`en middlewareeeeeeeeeee -------------------`);
-  // console.log(`res es`, res);
   console.error(err);
   // console.error(err, err.stack);
-  res.status(500)
-  // res.status(500).send(err);
+  // res.status(500)
+  res.send({ error: err.message });
 });
 
 //db sync and server listening
 const PORT = process.env.PORT || 8080;
-
 
 db.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
