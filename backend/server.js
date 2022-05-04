@@ -1,4 +1,5 @@
 const express = require("express");
+// var cors = require('cors')
 const routes = require("./routes");
 
 const dotenv = require("dotenv");
@@ -13,6 +14,8 @@ const localStrategy = require("passport-local").Strategy;
 
 const app = express();
 dotenv.config();
+
+// app.use(cors())
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
