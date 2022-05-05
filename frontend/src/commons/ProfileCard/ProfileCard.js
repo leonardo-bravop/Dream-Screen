@@ -28,7 +28,6 @@ const ProfileCard = ({ mediaId, mediaType }) => {
       })
       .catch((error) => {
         console.log(error);
-        // navigate("/404");
       });
     setLoading(true);
   }, [mediaId]);
