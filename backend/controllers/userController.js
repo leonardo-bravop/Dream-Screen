@@ -14,7 +14,6 @@ exports.register = (req, res, next) => {
     .then((newUser) => {
       if (newUser) res.status(201).send(newUser);
       else {
-        res.status(406);
         return next(
           new Error(
             "There's already a user registered with this e-mail or nickname"

@@ -21,14 +21,19 @@ exports.validateRegister = (res, password, nickName, email, next) => {
       if (!user) {
         return User.findOne({ where: { nickName } });
       } else {
-        return true;
+        res.status(406);
+        return "repeated-email";
       }
     })
     .then((user) => {
       if (!user) {
         return User.create({ password, nickName, email });
-      } else {
-        return false;
+      } else if (user==="repeated-email") {
+        return null
+      }
+      else {
+        res.status(418);
+        return null;
       }
     });
 };
