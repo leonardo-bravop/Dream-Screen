@@ -42,7 +42,7 @@ exports.persistUser = (req, res) => {
 
 //Add and delete favorite media
 
-exports.addFavoriteMedia = (req, res) => {
+exports.addFavoriteMedia = (req, res, next) => {
   const { userId, mediaType, mediaId } = req.query;
   User.findByPk(userId).then((user) => {
     let favoriteMedia;
@@ -66,7 +66,7 @@ exports.addFavoriteMedia = (req, res) => {
   });
 };
 
-exports.deleteFavoriteMedia = (req, res) => {
+exports.deleteFavoriteMedia = (req, res, next) => {
   const { userId, MediaId, mediaType } = req.query;
   let favoriteMedia;
   mediaType === "movie"
@@ -92,7 +92,7 @@ exports.deleteFavoriteMedia = (req, res) => {
 
 //Search users
 
-exports.searchUsersByNickName = (req, res) => {
+exports.searchUsersByNickName = (req, res, next) => {
   const { searchValue } = req.params;
   if (!searchValue) {
     res.status(400);
@@ -112,7 +112,7 @@ exports.searchUsersByNickName = (req, res) => {
     });
 };
 
-exports.searchOneUserByNickname = (req, res) => {
+exports.searchOneUserByNickname = (req, res, next) => {
   const { nickName } = req.params;
   if (!nickName) {
     res.status(400);

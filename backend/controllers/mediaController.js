@@ -2,7 +2,7 @@ const axios = require("axios");
 require("dotenv").config();
 API_KEY = process.env.API_KEY;
 
-exports.getById = (req, res) => {
+exports.getById = (req, res, next) => {
   const { media, id, language } = req.params;
   axios
     .get(
@@ -16,7 +16,7 @@ exports.getById = (req, res) => {
     });
 };
 
-exports.getByState = (req, res) => {
+exports.getByState = (req, res, next) => {
   const { mediaType, state, language, page } = req.params;
   axios
     .get(
@@ -30,7 +30,7 @@ exports.getByState = (req, res) => {
     });
 };
 
-exports.searchMediaByValue = (req, res) => {
+exports.searchMediaByValue = (req, res, next) => {
   const { mediaType, searchValue, language, page } = req.params;
   axios
     .get(
