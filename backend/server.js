@@ -81,8 +81,6 @@ if (process.env.NODE_ENV === "production") {
 //Error middleware
 app.use(function (err, req, res, next) {
   console.error(err);
-  // console.error(err, err.stack);
-  // res.status(500)
   res.send({ error: err.message });
 });
 

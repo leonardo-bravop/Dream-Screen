@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const { Op } = require("sequelize");
+const { validateRegister } = require("../services/user/registerValidation");
 
 exports.getAll = (req, res) => {
   User.findAll().then((users) => {
@@ -9,50 +10,15 @@ exports.getAll = (req, res) => {
 
 exports.register = (req, res, next) => {
   const { password, nickName, email } = req.body;
-  if (!password) {
-    res.status(400);
-    next(new Error("Please enter a [3-8] characters password"));
-    return;
-  }
-  if (!nickName) {
-    res.status(400);
-    next(new Error("Please enter a [2-20] characters nickname"));
-    return;
-  }
-  if (!email) {
-    res.status(400);
-    next(new Error("Please enter a valid email"));
-    return;
-  }
-  User.findOne({ where: { email } })
-    .then((user) => {
-      if (!user) {
-        return User.findOne({ where: { nickName } });
-      } else {
-        return {};
-      }
-    })
-    .then((user) => {
-      if (user) {
-        return User.findOne({ where: { nickName } });
-      } else {
-        return {};
-      }
-    })
-    .then((user) => {
-      if (!user) {
-        return User.create({password, nickName, email});
-      } else {
-        return {};
-      }
-    })
-
+  validateRegister(res, password, nickName, email, next)
     .then((newUser) => {
-      if (newUser.dataValues) res.status(201).send(newUser);
+      if (newUser) res.status(201).send(newUser);
       else {
         res.status(406);
         return next(
-          new Error("There's already a user registered with this e-mail")
+          new Error(
+            "There's already a user registered with this e-mail or nickname"
+          )
         );
       }
     })
