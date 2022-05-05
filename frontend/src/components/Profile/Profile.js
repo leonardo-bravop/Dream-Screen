@@ -70,7 +70,7 @@ const Profile = ({ edit }) => {
             })
           ) : !loading ? (
             <span style={{ textAlign: "center" }}>
-              {userData.nickName} doesn't have any favorite Tv Show yet
+              {userData.nickName} doesn't have any favorite TV Show yet
             </span>
           ) : null}
         </div>

@@ -4,6 +4,7 @@ import Row from "../Row/Row";
 import { Routes, Route } from "react-router";
 import Grid from "../Grid/Grid";
 import Spinner from "../Spinner/Spinner";
+import "./Content.css"
 
 const Content = () => {
   const [popularMedia, setPopularMedia] = useState([]);
@@ -23,15 +24,21 @@ const Content = () => {
       <Route
         path=""
         element={
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
+          <div className="content-container">
+            <div
+              className="extraInfo"
+            >
+              <h1 style={{fontSize: "3em"}}>Explore Movies and TV Shows</h1>
+              {/* <p style={{ fontSize: "1.1em" }}>
+                Create a profile and save favorite movies and TV shows
+              </p> */}
+              {/* <h2>Join Dream Screen!</h2>
+              <p style={{ fontSize: "1.1em" }}>
+                Create a profile and save favorite movies and TV shows
+              </p> */}
+            </div>
             <div>
-              <h2 style={{ color: "#02175a" }}>TRENDING TODAY</h2>
+              <h1 style={{ color: "#02175a", letterSpacing: "0.05em" }}>TRENDING NOW</h1>
             </div>
             {loading && (
               <div style={{ marginTop: "60px" }}>
@@ -40,19 +47,6 @@ const Content = () => {
             )}
             <Row media={popularMedia} />
             <Grid media={popularMedia.slice(0, 6)} />
-            <div
-              style={{
-                backgroundColor: "#02175a",
-                width: "100%",
-                margin: "40px 0",
-                padding: "20px 0",
-                color: "white",
-                textAlign: "center",
-              }}
-            >
-              <h2>Join Dream Screen!</h2>
-              <p>Create a profile and save favorite movies and tv shows</p>
-            </div>
           </div>
         }
       />

@@ -44,12 +44,12 @@ const SearchForm = () => {
           className="searchInput"
           placeholder={
             matchGeneral
-              ? "Search a movie or TV Show"
+              ? "Search a Movie or TV Show"
               : matchTv
               ? "Search a TV Show"
               : matchUser
               ? "Search a user"
-              : "Search a movie"
+              : "Search a Movie"
           }
         ></input>
         <button type="submit" className="searchSubmitButton">

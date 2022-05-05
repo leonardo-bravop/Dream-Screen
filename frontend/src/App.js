@@ -15,6 +15,7 @@ import UserProfile from "./components/Profile/UserProfile";
 import { persistUser } from "./state/user";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -71,6 +72,7 @@ const App = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

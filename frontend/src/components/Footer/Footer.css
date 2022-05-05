@@ -1,0 +1,33 @@
+.externalLink {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.externalLink > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  /* height: 35px; */
+padding-top: 18px;   /* width: 190px; */
+}
+
+/* #portfolioLink {
+  color: white;
+} */
+
+.externalLink > a:hover {
+  color: #ffae00;
+}
+
+#portfolioLink > svg :hover {
+  color: #ff6600;
+}
+
+/* 
+#repoLink>svg :hover {
+  color: #a1a1a1;
+} */

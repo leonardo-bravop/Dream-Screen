@@ -23,7 +23,7 @@ const MediaRow = ({ mediaType, state }) => {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
-        marginTop: "10px",
+        marginTop: "20px",
       }}
       className="gridContainer"
     >
