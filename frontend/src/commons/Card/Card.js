@@ -4,7 +4,7 @@ import { VisibilityContext } from "react-horizontal-scrolling-menu";
 
 import "./Card.css";
 
-const Card = ({ data, itemId, title, onClick }) => {
+const Card = ({ data, itemId, title, onClick=()=>{} }) => {
 
   const visibility = useContext(VisibilityContext);
 
