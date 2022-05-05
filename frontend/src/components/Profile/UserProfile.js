@@ -39,7 +39,7 @@ const UserProfile = () => {
         <h2>Favorite movies</h2>
         <div className="cards-div">
           {favoriteMovies.length? favoriteMovies.map((movieId) => {
-            return <FavoritesCard mediaId={movieId} mediaType={"movie"} />;
+            return <FavoritesCard mediaId={movieId} mediaType={"movie"} key={movieId}/>;
           }) : `You don't have any favorite movie yet. Search movies and start creating your collection!`}
         </div>
         <h2>Favorite Tv Shows</h2>

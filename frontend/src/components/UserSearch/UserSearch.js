@@ -19,11 +19,9 @@ const UserSearch = () => {
     axios
       .get(`/api/user/searchUsers/${searchValue}`)
       .then((res) => {
-        console.log(`res es`, res);
         setUsers(res.data);
         setLoading(false);
         setNoResults("No se encontraron resultados");
-        console.log(`setee a falses`);
       })
       .catch((error) => {
         console.log(error);
@@ -31,7 +29,6 @@ const UserSearch = () => {
         setError(true);
       });
     setLoading(true);
-    console.log(`users es`, users);
   }, [searchValue]);
 
   return (

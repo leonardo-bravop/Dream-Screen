@@ -54,12 +54,11 @@ const Item = () => {
     axios
       .get(`/api/media/${media}/id/${id}/language/en-US`)
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
         setLoadingContent(false);
       })
       .catch(() => {
-        console.log(`algo salio mal`);
+        console.log(`data failed to load`);
       });
     setLoadingContent(true);
   }, [id]);
@@ -76,7 +75,7 @@ const Item = () => {
           className="movieContent"
           style={{
             backgroundImage: ` linear-gradient(to bottom, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.7) 100%), url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path})`,
-            backgroundPosition: "center"
+            backgroundPosition: "center",
           }}
         >
           <div id="itemPicture">
@@ -157,7 +156,6 @@ const Item = () => {
                   user?.favoriteTv.includes(id)) ? (
                 <button
                   className="heartDivItem filledHeart"
-                  o
                   onClick={onRemoveFavClick}
                 >
                   <AiFillHeart />

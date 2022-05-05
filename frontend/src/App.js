@@ -22,7 +22,6 @@ const App = () => {
   const user = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(persistUser()).then((user) => {
-      console.log(`user es`, user);
     });
   }, []);
 
@@ -66,7 +65,7 @@ const App = () => {
               ></Route>
               <Route
                 path="/*"
-                element={<h1>Error 404: Page not found</h1>}
+                element={<h1>Error 404: Nothing here, please go to a valid route :)</h1>}
               ></Route>
             </Routes>
           </div>

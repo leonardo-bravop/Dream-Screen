@@ -10,7 +10,6 @@ const MediaRow = ({ mediaType, state }) => {
 
   useEffect(() => {
     axios.get(`/api/media/${mediaType}/${state}/en-US/1`).then((res) => {
-      console.log(`res en mediarow es`, res);
       setMedia(res.data.results);
       setLoading(false);
     });

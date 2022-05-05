@@ -26,7 +26,6 @@ const UserFavorites = () => {
 
   useEffect(() => {
     setSelected(state);
-    console.log(`state es`, state);
     if (state !== "movies" && state !== "tv_Shows") {
       navigate("movies");
     }
@@ -36,9 +35,13 @@ const UserFavorites = () => {
     <div>
       <h2 className="fav-title">Your Movies and TV Shows Collection</h2>
       <div className="favorites-tagnav">
-        {statesArray.map((state) => {
+        {statesArray.map((state, i) => {
           return (
-            <Link to={state} onClick={() => setSelected(state)}>
+            <Link
+              to={state}
+              onClick={() => setSelected(state)}
+              key={`fav-${state}${i}`}
+            >
               <div className="tagnav-div">
                 <button
                   className={`tagnav-button ${
@@ -60,21 +63,39 @@ const UserFavorites = () => {
           );
         })}
       </div>
-      <div
-       className="favs-container"
-      >
+      <div className="favs-container">
         <Routes>
           <Route
             path="movies"
-            element={favoriteMovies.map((movieId) => {
-              return <FavoritesCard mediaId={movieId} mediaType={"movie"} />;
-            })}
+            element={
+              favoriteMovies.length ? (
+                favoriteMovies.map((movieId) => {
+                  return (
+                    <FavoritesCard
+                      mediaId={movieId}
+                      mediaType={"movie"}
+                      key={movieId}
+                    />
+                  );
+                })
+              ) : (
+                <p>No Favorite Movies yet</p>
+              )
+            }
           ></Route>
           <Route
             path="tv_Shows"
-            element={favoriteTv.map((movieId) => {
-              return <FavoritesCard mediaId={movieId} mediaType={"tv"} />;
-            })}
+            element={
+              favoriteTv.length ? (
+                favoriteTv.map((tvId) => {
+                  return (
+                    <FavoritesCard mediaId={tvId} mediaType={"tv"} key={tvId} />
+                  );
+                })
+              ) : (
+                <p>No Favorite TV Shows yet</p>
+              )
+            }
           ></Route>
         </Routes>
       </div>

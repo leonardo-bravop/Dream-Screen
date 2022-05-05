@@ -8,29 +8,45 @@ exports.getAll = (req, res) => {
 };
 
 exports.register = (req, res, next) => {
-  if (!req.body.password) {
+  const { password, nickName, email } = req.body;
+  if (!password) {
     res.status(400);
     next(new Error("Please enter a [3-8] characters password"));
     return;
   }
-  if (!req.body.nickName) {
+  if (!nickName) {
     res.status(400);
     next(new Error("Please enter a [2-20] characters nickname"));
     return;
   }
-  if (!req.body.email) {
+  if (!email) {
     res.status(400);
     next(new Error("Please enter a valid email"));
     return;
   }
-  User.findOne({ where: { email: req.body.email } })
+  User.findOne({ where: { email } })
     .then((user) => {
       if (!user) {
-        return User.create(req.body);
+        return User.findOne({ where: { nickName } });
       } else {
         return {};
       }
     })
+    .then((user) => {
+      if (user) {
+        return User.findOne({ where: { nickName } });
+      } else {
+        return {};
+      }
+    })
+    .then((user) => {
+      if (!user) {
+        return User.create({password, nickName, email});
+      } else {
+        return {};
+      }
+    })
+
     .then((newUser) => {
       if (newUser.dataValues) res.status(201).send(newUser);
       else {
@@ -137,7 +153,8 @@ exports.searchOneUserByNickname = (req, res) => {
     res.status(400);
     next(new Error("Please enter a nickname"));
     return;
-  }  User.findOne(
+  }
+  User.findOne(
     { where: { nickName: nickName } },
     {
       attributes: ["id", "nickName", "favoriteMovies", "favoriteTv"],

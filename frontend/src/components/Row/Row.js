@@ -85,7 +85,6 @@ export function RightArrow() {
   const { isLastItemVisible, scrollNext, visibleItemsWithoutSeparators } =
     useContext(VisibilityContext);
 
-  // console.log({ isLastItemVisible });
   const [disabled, setDisabled] = useState(
     !visibleItemsWithoutSeparators.length && isLastItemVisible
   );
@@ -99,7 +98,6 @@ export function RightArrow() {
     <Arrow
       disabled={disabled}
       onClick={() => {
-        console.log(`flecha derecha`);
         scrollNext();
       }}
     >

@@ -24,12 +24,6 @@ const Navbar = () => {
     if (state[2] === "my-favorites") setSelected("my-favorites");
   }, []);
 
-  useEffect(() => {
-    console.log(`matchstate es`, matchState);
-    console.log(`scrolldirection es`, scrollDirection);
-    console.log(`state es`, state);
-    console.log(`matchitem es`, matchItem);
-  }, []);
 
   // Navbar hide functionality
   const { y, x, scrollDirection, setScrollDirection } = useScroll();

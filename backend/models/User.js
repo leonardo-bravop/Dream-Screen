@@ -28,7 +28,6 @@ User.init(
       type: DataTypes.STRING,
       validate: {
         customValidator(value) {
-          console.log(`value es`, value);
           if (!/^([a-zA-Z0-9_'.-]){2,20}$/.test(value)) {
             throw new Error(
               "Nickname must be [2-20] characters: letters, numbers and _ - ' . are allowed"

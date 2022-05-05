@@ -17,7 +17,6 @@ const Profile = ({ edit }) => {
     setLoading(false);
     if (nickName) {
       axios.get(`/api/user/searchOne/${nickName}`).then((res) => {
-        console.log(`res es`, res);
         setUserData(res.data);
         if (res.data.favoriteMovies) {
           let favMovies = res.data.favoriteMovies.split(" ");
@@ -53,7 +52,13 @@ const Profile = ({ edit }) => {
         <div className="cards-div">
           {favoriteMovies.length ? (
             favoriteMovies.map((movieId) => {
-              return <ProfileCard mediaId={movieId} mediaType={"movie"} />;
+              return (
+                <ProfileCard
+                  mediaId={movieId}
+                  mediaType={"movie"}
+                  key={movieId}
+                />
+              );
             })
           ) : !loading ? (
             <span style={{ textAlign: "center" }}>

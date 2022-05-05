@@ -13,7 +13,8 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    selected.setValue("")
+    opened.setValue(false);
+    selected.setValue("");
     dispatch(sendLogoutRequest())
       .then((res) => res)
       .then(() => navigate("/"));
@@ -25,45 +26,60 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
         <Link
           to="/media/movie/popular"
           onClick={() => {
-            console.log(`soy movies button`);
             opened.setValue(false);
-            selected.setValue("movies")
-            setScrollDirection("")
+            selected.setValue("movies");
+            setScrollDirection("");
           }}
         >
-          {selected.value==="movies"? <button className="selectedMediaNavButton">Movies</button> :  <button className="mediaNavButton">Movies</button>}
+          {selected.value === "movies" ? (
+            <button className="selectedMediaNavButton">Movies</button>
+          ) : (
+            <button className="mediaNavButton">Movies</button>
+          )}
         </Link>
         <Link
           to="/media/tv/popular"
           onClick={() => {
             opened.setValue(false);
-            selected.setValue("tv-shows")
-            setScrollDirection("")
+            selected.setValue("tv-shows");
+            setScrollDirection("");
           }}
         >
-          {selected.value==="tv-shows"? <button className="selectedMediaNavButton">TV Shows</button> :  <button className="mediaNavButton">TV Shows</button>}
+          {selected.value === "tv-shows" ? (
+            <button className="selectedMediaNavButton">TV Shows</button>
+          ) : (
+            <button className="mediaNavButton">TV Shows</button>
+          )}
         </Link>
         <Link
           to="/user/search"
           onClick={() => {
             opened.setValue(false);
-            selected.setValue("users")
-            setScrollDirection("")
+            selected.setValue("users");
+            setScrollDirection("");
           }}
         >
-          {selected.value==="users"? <button className="selectedMediaNavButton">Users</button> :  <button className="mediaNavButton">Users</button>}
+          {selected.value === "users" ? (
+            <button className="selectedMediaNavButton">Users</button>
+          ) : (
+            <button className="mediaNavButton">Users</button>
+          )}
         </Link>
-        {user.id? (
-           <Link
-           to="/user/my-favorites/movies"
-           onClick={() => {
-             opened.setValue(false);
-             selected.setValue("my-favorites")
-             setScrollDirection("")
-           }}
-         >
-          {selected.value==="my-favorites"? <button className="selectedMediaNavButton">My Favorites</button> :  <button className="mediaNavButton">My Favorites</button>}
-         </Link>
+        {user.id ? (
+          <Link
+            to="/user/my-favorites/movies"
+            onClick={() => {
+              opened.setValue(false);
+              selected.setValue("my-favorites");
+              setScrollDirection("");
+            }}
+          >
+            {selected.value === "my-favorites" ? (
+              <button className="selectedMediaNavButton">My Favorites</button>
+            ) : (
+              <button className="mediaNavButton">My Favorites</button>
+            )}
+          </Link>
         ) : null}
       </div>
       <div className="userButtons">
@@ -73,7 +89,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
               to={`/user/profile`}
               onClick={() => {
                 opened.setValue(false);
-                selected.setValue("")
+                selected.setValue("");
               }}
             >
               <div
@@ -83,7 +99,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
                   marginRight: "20px",
                 }}
               >
-            <FaUserCircle size={"3em"} id="user-icon"/>
+                <FaUserCircle size={"3em"} id="user-icon" />
                 <div
                   style={{
                     color: "white",
@@ -91,7 +107,9 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
                     height: "100%",
                   }}
                 >
-                  {user.nickName.length>8? user.nickName.substring(0,6)+"..." : user.nickName}
+                  {user.nickName.length > 8
+                    ? user.nickName.substring(0, 6) + "..."
+                    : user.nickName}
                 </div>
               </div>
             </Link>
@@ -106,7 +124,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
               to={"/login"}
               onClick={() => {
                 opened.setValue(false);
-                selected.setValue("")
+                selected.setValue("");
               }}
             >
               <button className="navButton" id="LoginButton">
@@ -117,7 +135,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
               to={"/register"}
               onClick={() => {
                 opened.setValue(false);
-                selected.setValue("")
+                selected.setValue("");
               }}
             >
               <button className="navButton">SignUp</button>

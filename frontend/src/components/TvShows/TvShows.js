@@ -24,7 +24,7 @@ const TvShows = () => {
       <div className="movies-tagnav">
         {statesArray.map((state) => {
           return (
-            <Link to={state} onClick={() => setSelected(state)}>
+            <Link to={state} onClick={() => setSelected(state)} key={`tv-${state}`}>
               <div className="tagnav-div">
                 <button
                   className={`tagnav-button ${

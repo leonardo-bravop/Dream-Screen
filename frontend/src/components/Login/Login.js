@@ -2,7 +2,7 @@ import useInput from "../../hooks/useInput";
 import { useNavigate } from "react-router";
 import { sendLoginRequest } from "../../state/user";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Spinner from "../Spinner/Spinner";
 import "./Login.css";
 
@@ -12,16 +12,25 @@ const Login = () => {
   const password = useInput();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [loginError, setLoginError] = useState(false)
   const user = useSelector((state) => state.user);
 
+  useEffect(()=>{
+    setLoginError(false)
+  }, [])
+
   const handleLoginSubmit = (e) => {
+    setLoginError(false)
     e.preventDefault();
     dispatch(sendLoginRequest({ email: email.value, password: password.value }))
       .then((data) => {
+        console.log('cambio');
+        console.log(`data es`, data);
+        if(data.error) setLoginError(true)
         if (data.payload) navigate(`/`);
         setLoading(false);
       })
-      .catch((err) => alert(`Invalid email or password \nPlease try again.`));
+      .catch((error) => console.log(`ERROR:`, error));
     setLoading(true);
   };
 
@@ -57,7 +66,7 @@ const Login = () => {
         </button>
       </form>
       {loading && <Spinner size={"3em"} />}
-      {user.error && <p style={{ color: "red" }}>Invalid Credentials</p>}
+      {loginError && <p style={{ color: "red" }}>Email or password invalid</p>}
     </div>
   );
 };

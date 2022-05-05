@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendSignUpRequest, sendLoginRequest } from "../../state/user";
 import { useNavigate } from "react-router";
 import Spinner from "../Spinner/Spinner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Register.css";
 
 const Register = () => {
@@ -16,9 +16,15 @@ const Register = () => {
 
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
+  const [registerError, setRegisterError] = useState(false);
+
+  useEffect(() => {
+    setRegisterError(false);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setRegisterError(false)
 
     if (!validateString(nickname.value)) return;
     if (!validateEmail(email.value)) return;
@@ -31,33 +37,41 @@ const Register = () => {
       })
     )
       .then((data) => {
+        console.log(`data es`, data);
+        //data.error is undefined
+        if (data.error) {
+          setLoading(false);
+          console.log('antes de set register error a true');
+          setRegisterError(true);
+          console.log('fin de setloading false');
+        }
         if (data.payload) {
+          console.log(`entre`);
           dispatch(
             sendLoginRequest({ email: email.value, password: password.value })
           ).then((res) => {
-            console.log(`res es`, res);
             setLoading(false);
             navigate("/");
           });
           setLoading(true);
         } else {
-          console.log(`data es`, data);
           // alert(`User already exists. Please use another email.`);
         }
       })
       .catch((error) => console.log(`ERROR:`, error));
     setLoading(true);
+    console.log('fin de useeffect');
   };
 
-  const validateEmail = email => {
+  const validateEmail = (email) => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       return true;
     }
-    alert('Please enter a valid email address');
+    alert("Please enter a valid email address");
     return false;
   };
 
-  const validateString = str => {
+  const validateString = (str) => {
     if (/^([a-zA-Z0-9_'.-]){0,20}$/.test(str)) {
       return true;
     }
@@ -120,8 +134,8 @@ const Register = () => {
               Sign up
             </button>
           </form>
-          {loading && <Spinner size={"3em"}/>}
-          {user.error && <p style={{ color: "red" }}>Invalid values</p>}
+          {loading && <Spinner size={"3em"} />}
+          {registerError && <p style={{ color: "red" }}>Invalid values</p>}
         </div>
       ) : null}
     </>
