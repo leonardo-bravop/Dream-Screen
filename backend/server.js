@@ -11,6 +11,8 @@ const sessions = require("express-session");
 const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
 
+const path = require("path");
+
 const app = express();
 dotenv.config();
 
@@ -58,12 +60,23 @@ passport.deserializeUser(function (id, done) {
     .catch(done);
 });
 
-//Check route
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
-
 app.use("/api", routes);
+
+// --------- deployment ---------------
+
+__dirname = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+} else {
+  //Check route
+  app.get("/", (req, res) => {
+    res.send("API is running...");
+  });
+}
 
 //Error middleware
 app.use(function (err, req, res, next) {
