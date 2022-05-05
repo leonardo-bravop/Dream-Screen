@@ -20,6 +20,13 @@ User.init(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        passwordValidator(value) {
+          if (!/^.{8,}$/i.test(value)) {
+            throw new Error("Password must be more than 8 characters");
+          }
+        },
+      },
     },
     salt: {
       type: DataTypes.STRING,
@@ -27,7 +34,8 @@ User.init(
     nickName: {
       type: DataTypes.STRING,
       validate: {
-        customValidator(value) {
+        nickNameValidator(value) {
+          console.log(`value es`, value);
           if (!/^([a-zA-Z0-9_'.-]){2,20}$/.test(value)) {
             throw new Error(
               "Nickname must be [2-20] characters: letters, numbers and _ - ' . are allowed"
