@@ -58,7 +58,7 @@ const Item = () => {
         setLoadingContent(false);
       })
       .catch(() => {
-        console.log(`data failed to load`);
+        console.log(`Data failed to load`);
       });
     setLoadingContent(true);
   }, [id]);

@@ -62,7 +62,6 @@ const Register = () => {
       })
       .catch((error) => console.log(`ERROR:`, error));
     setLoading(true);
-    console.log("fin de useeffect");
   };
 
   const validateEmail = (email) => {
