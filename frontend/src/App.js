@@ -21,8 +21,7 @@ const App = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   useEffect(() => {
-    dispatch(persistUser()).then((user) => {
-    });
+    dispatch(persistUser()).then((user) => {});
   }, []);
 
   return (
@@ -35,12 +34,8 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Content />}></Route>
               <Route path="/media/*" element={<Media />}></Route>
-              {!user.id ? (
-                <>
-                  <Route path="/register" element={<Register />}></Route>
-                  <Route path="/login" element={<Login />}></Route>
-                </>
-              ) : null}
+              <Route path="/register" element={<Register />}></Route>
+              <Route path="/login" element={<Login />}></Route>
               <Route
                 path={`/media/:mediaType/search/:searchValue`}
                 element={<SearchListGrid />}
@@ -65,7 +60,11 @@ const App = () => {
               ></Route>
               <Route
                 path="/*"
-                element={<h1>Error 404: Nothing here, please go to a valid route :)</h1>}
+                element={
+                  <h1>
+                    Error 404: Nothing here, please go to a valid route :)
+                  </h1>
+                }
               ></Route>
             </Routes>
           </div>

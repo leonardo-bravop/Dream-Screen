@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 import { sendLogoutRequest } from "../../state/user";
 import { FaUserCircle } from "react-icons/fa";
 import "./Navbar.css";
+import Spinner from "../Spinner/Spinner";
 
 const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
   const user = useSelector((state) => state.user);
+  const [loadingLogout, setLoadingLogout] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,9 +18,14 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
     opened.setValue(false);
     selected.setValue("");
     dispatch(sendLogoutRequest())
-      .then((res) => res)
+      .then((res) => setLoadingLogout(false))
       .then(() => navigate("/"));
+    setLoadingLogout(true);
   };
+
+  useEffect(() => {
+    setLoadingLogout(false);
+  }, []);
 
   return (
     <>
@@ -114,8 +121,10 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
               </div>
             </Link>
 
-            <button className="navButton" onClick={handleLogout}>
-              Logout
+            <button className="navButton" id="logOutButton" onClick={handleLogout}>
+              {
+              !loadingLogout ? "Logout" :
+               <Spinner />}
             </button>
           </>
         ) : (
@@ -138,7 +147,7 @@ const NavbarLinks = ({ opened, selected, setScrollDirection }) => {
                 selected.setValue("");
               }}
             >
-              <button className="navButton">SignUp</button>
+              <button className="navButton" id="signUpButton">SignUp</button>
             </Link>
           </>
         )}

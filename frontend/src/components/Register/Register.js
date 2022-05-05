@@ -17,14 +17,17 @@ const Register = () => {
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const [registerError, setRegisterError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     setRegisterError(false);
-  }, []);
+    if (user.id) navigate("/");
+  }, [user.id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setRegisterError(false)
+    setRegisterError(false);
+    setErrorMessage("");
 
     if (!validateString(nickname.value)) return;
     if (!validateEmail(email.value)) return;
@@ -37,30 +40,29 @@ const Register = () => {
       })
     )
       .then((data) => {
-        console.log(`data es`, data);
-        //data.error is undefined
         if (data.error) {
           setLoading(false);
-          console.log('antes de set register error a true');
           setRegisterError(true);
-          console.log('fin de setloading false');
+          if (data.error.message === "Request failed with status code 406")
+            setErrorMessage("Email is already in use");
+          else if (data.error.message === "Request failed with status code 418")
+            setErrorMessage("Nickname is already in use");
         }
         if (data.payload) {
-          console.log(`entre`);
           dispatch(
             sendLoginRequest({ email: email.value, password: password.value })
-          ).then((res) => {
-            setLoading(false);
-            navigate("/");
-          });
+          )
+            .then((res) => {
+              setLoading(false);
+              navigate("/");
+            })
+            .catch((error) => console.log(`ERROR:`, error));
           setLoading(true);
-        } else {
-          // alert(`User already exists. Please use another email.`);
         }
       })
       .catch((error) => console.log(`ERROR:`, error));
     setLoading(true);
-    console.log('fin de useeffect');
+    console.log("fin de useeffect");
   };
 
   const validateEmail = (email) => {
@@ -105,6 +107,7 @@ const Register = () => {
               {...email}
               className="inputText"
               placeholder="awesome@email.com"
+              required
             ></input>
             <label htmlFor="password" className="inputLabel">
               Password
@@ -112,11 +115,11 @@ const Register = () => {
             <input
               type="password"
               name="password"
-              minLength={3}
-              maxLength={15}
+              minLength={8}
               {...password}
-              placeholder="8-15 characters"
+              placeholder="8+ characters"
               className="inputText"
+              required
             ></input>
             <label htmlFor="nickname" className="inputLabel">
               Nickname
@@ -129,13 +132,14 @@ const Register = () => {
               {...nickname}
               className="inputText"
               placeholder="2-20 characters"
+              required
             ></input>
             <button type="submit" className="navButton" id="registerButton">
               Sign up
             </button>
           </form>
           {loading && <Spinner size={"3em"} />}
-          {registerError && <p style={{ color: "red" }}>Invalid values</p>}
+          {registerError && <p style={{ color: "red" }}>{errorMessage}</p>}
         </div>
       ) : null}
     </>

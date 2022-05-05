@@ -12,21 +12,21 @@ const Login = () => {
   const password = useInput();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const [loginError, setLoginError] = useState(false)
+  const [loginError, setLoginError] = useState(false);
   const user = useSelector((state) => state.user);
 
-  useEffect(()=>{
-    setLoginError(false)
-  }, [])
+  useEffect(() => {
+    setLoginError(false);
+    if (user.id) {
+      navigate("/");}
+  }, [user.id]);
 
   const handleLoginSubmit = (e) => {
-    setLoginError(false)
+    setLoginError(false);
     e.preventDefault();
     dispatch(sendLoginRequest({ email: email.value, password: password.value }))
       .then((data) => {
-        console.log('cambio');
-        console.log(`data es`, data);
-        if(data.error) setLoginError(true)
+        if (data.error) setLoginError(true);
         if (data.payload) navigate(`/`);
         setLoading(false);
       })
