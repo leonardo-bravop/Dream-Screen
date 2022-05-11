@@ -11,7 +11,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import "./Item.css";
 
 const Item = () => {
-  const navigate = useNavigate();
+  const [errorFetchingData, setErrorFetchingData] = useState(false);
   const { media, id } = useParams();
   const [loading, setLoading] = useState(false);
   const [loadingContent, setLoadingContent] = useState(false);
@@ -51,6 +51,7 @@ const Item = () => {
 
   useEffect(() => {
     setLoadingContent(false);
+    setErrorFetchingData(false);
     axios
       .get(`/api/media/${media}/id/${id}/language/en-US`)
       .then((res) => {
@@ -59,18 +60,27 @@ const Item = () => {
       })
       .catch(() => {
         console.log(`Data failed to load`);
+        setErrorFetchingData(true);
+        setLoadingContent(false);
       });
     setLoadingContent(true);
   }, [id]);
 
   return (
     <>
+      {errorFetchingData && (
+        <div
+          style={{ marginTop: "60px", textAlign: "center", fontSize: "1.3em" }}
+        >
+          Ups! We couldn't load the data. Please try again in a moment!
+        </div>
+      )}
       {loadingContent && (
         <div style={{ marginTop: "60px" }}>
           <Spinner size={"3em"} />
         </div>
       )}
-      {!loadingContent && (
+      {!loadingContent && !errorFetchingData && (
         <div
           className="movieContent"
           style={{
