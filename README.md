@@ -14,6 +14,8 @@ Made with the TMDB API.
    - Once logged in, you can save or remove any media from your favorites
    - Search users by nickname and see their profile with their favorite media
 
+## Tech stack
+
 ### Frontend:
 
 React + Redux | Pure CSS
