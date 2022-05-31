@@ -7,6 +7,13 @@ Made with the TMDB API.
 
 ![Main preview](previews/main.png)
 
+## Features
+
+   - Search movies, Tv shows and see its details
+   - Register, login, logout and persist login session
+   - Once logged in, you can save or remove any media from your favorites
+   - Search users by nickname and see their profile with their favorite media
+
 ### Frontend:
 
 React + Redux | Pure CSS
